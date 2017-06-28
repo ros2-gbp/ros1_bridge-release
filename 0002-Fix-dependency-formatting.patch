@@ -1,4 +1,4 @@
-From 9e3c14f2eef20173a5629707a1d6a43e699d78bb Mon Sep 17 00:00:00 2001
+From e21bdfc88b904977ba5be13c4d85b4e13c125f02 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Steven!=20Ragnar=C3=B6k?= <steven@nuclearsandwich.com>
 Date: Tue, 27 Jun 2017 20:04:05 -0400
 Subject: [PATCH 2/2] Fix dependency formatting.
