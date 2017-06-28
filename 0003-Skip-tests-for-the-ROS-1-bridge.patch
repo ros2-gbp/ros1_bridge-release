@@ -1,7 +1,7 @@
-From d06b4d3210938bb99b58419d8450bf65db243896 Mon Sep 17 00:00:00 2001
+From e2809fab11fe76154e748ecebe12412b15d838cd Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Steven!=20Ragnar=C3=B6k?= <steven@nuclearsandwich.com>
 Date: Wed, 28 Jun 2017 17:21:49 -0400
-Subject: [PATCH 3/3] Skip tests for the ROS 1 bridge.
+Subject: [PATCH 3/4] Skip tests for the ROS 1 bridge.
 
 There's a linking error that is specific to building tests. This should
 be addressed and may be a sympton of other runtime issues but for now
