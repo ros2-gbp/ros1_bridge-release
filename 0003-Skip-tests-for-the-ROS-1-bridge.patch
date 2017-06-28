@@ -1,4 +1,4 @@
-From e2809fab11fe76154e748ecebe12412b15d838cd Mon Sep 17 00:00:00 2001
+From 935597fd47a682057d62ed6b95d6a00c0ef2849a Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Steven!=20Ragnar=C3=B6k?= <steven@nuclearsandwich.com>
 Date: Wed, 28 Jun 2017 17:21:49 -0400
 Subject: [PATCH 3/4] Skip tests for the ROS 1 bridge.

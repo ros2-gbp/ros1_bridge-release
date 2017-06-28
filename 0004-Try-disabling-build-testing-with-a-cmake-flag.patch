@@ -1,4 +1,4 @@
-From d3950fe6c7df57a7eaf8177e893ac7e2b84431cb Mon Sep 17 00:00:00 2001
+From ea0252f18f0ab7120db0624db5166fac432cb788 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Steven!=20Ragnar=C3=B6k?= <steven@nuclearsandwich.com>
 Date: Wed, 28 Jun 2017 18:19:53 -0400
 Subject: [PATCH 4/4] Try disabling build testing with a cmake flag.
