@@ -1,7 +1,7 @@
-From de8deafa61a35f3c548c1c46ec02485fd80f3f63 Mon Sep 17 00:00:00 2001
+From 726e88c684f81e1a3fc8eb9658c26231118d23b9 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Steven!=20Ragnar=C3=B6k?= <steven@nuclearsandwich.com>
 Date: Tue, 27 Jun 2017 19:31:54 -0400
-Subject: [PATCH 1/4] Bridge ROS 1 dependencies and workspace.
+Subject: [PATCH 1/5] Bridge ROS 1 dependencies and workspace.
 
 ---
  debian/control.em | 4 ++--
