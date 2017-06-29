@@ -1,0 +1,41 @@
+From 7c5828e25bd6a3508c721f6db7d66218bd340951 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Steven!=20Ragnar=C3=B6k?= <steven@nuclearsandwich.com>
+Date: Thu, 29 Jun 2017 18:09:34 -0400
+Subject: [PATCH 6/6] Set CMake rules for prefix paths to environment
+ variables.
+
+---
+ debian/rules.em | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/debian/rules.em b/debian/rules.em
+index f9a541f..93e436b 100755
+--- a/debian/rules.em
++++ b/debian/rules.em
+@@ -33,7 +33,7 @@ override_dh_auto_configure:
+ 	if [ -f "/opt/ros/kinetic/setup.sh" ]; then . "/opt/ros/kinetic/setup.sh"; fi && \
+ 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
+ 	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
+-	dh_auto_configure @(debhelper_autoconfigure_options)
++	dh_auto_configure @(debhelper_autoconfigure_options) -DCMAKE_PREFIX_PATH="${CMAKE_PREFIX_PATH}" -DAMENT_PREFIX_PATH="${AMENT_PREFIX_PATH}"
+ 
+ override_dh_auto_build:
+ 	# In case we're installing to a non-standard location, look for a setup.sh
+@@ -42,7 +42,7 @@ override_dh_auto_build:
+ 	if [ -f "/opt/ros/kinetic/setup.sh" ]; then . "/opt/ros/kinetic/setup.sh"; fi && \
+ 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
+ 	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
+-	dh_auto_build
++	dh_auto_build -DCMAKE_PREFIX_PATH="${CMAKE_PREFIX_PATH}" -DAMENT_PREFIX_PATH="${AMENT_PREFIX_PATH}"
+ 
+ override_dh_auto_test:
+ 	# In case we're installing to a non-standard location, look for a setup.sh
+@@ -70,4 +70,4 @@ override_dh_auto_install:
+ 	if [ -f "/opt/ros/kinetic/setup.sh" ]; then . "/opt/ros/kinetic/setup.sh"; fi && \
+ 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
+ 	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
+-	dh_auto_install
++	dh_auto_install -DCMAKE_PREFIX_PATH="${CMAKE_PREFIX_PATH}" -DAMENT_PREFIX_PATH="${AMENT_PREFIX_PATH}"
+-- 
+2.7.4
+
