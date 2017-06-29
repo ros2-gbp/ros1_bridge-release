@@ -33,7 +33,7 @@ override_dh_auto_configure:
 	if [ -f "/opt/ros/kinetic/setup.sh" ]; then . "/opt/ros/kinetic/setup.sh"; fi && \
 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
 	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
-	dh_auto_configure @(debhelper_autoconfigure_options) -DCMAKE_PREFIX_PATH="${CMAKE_PREFIX_PATH}" -DAMENT_PREFIX_PATH="${AMENT_PREFIX_PATH}"
+	dh_auto_configure @(debhelper_autoconfigure_options)
 
 override_dh_auto_build:
 	# In case we're installing to a non-standard location, look for a setup.sh
@@ -42,7 +42,7 @@ override_dh_auto_build:
 	if [ -f "/opt/ros/kinetic/setup.sh" ]; then . "/opt/ros/kinetic/setup.sh"; fi && \
 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
 	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
-	dh_auto_build -DCMAKE_PREFIX_PATH="${CMAKE_PREFIX_PATH}" -DAMENT_PREFIX_PATH="${AMENT_PREFIX_PATH}"
+	dh_auto_build
 
 override_dh_auto_test:
 	# In case we're installing to a non-standard location, look for a setup.sh
@@ -70,4 +70,4 @@ override_dh_auto_install:
 	if [ -f "/opt/ros/kinetic/setup.sh" ]; then . "/opt/ros/kinetic/setup.sh"; fi && \
 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
 	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
-	dh_auto_install -DCMAKE_PREFIX_PATH="${CMAKE_PREFIX_PATH}" -DAMENT_PREFIX_PATH="${AMENT_PREFIX_PATH}"
+	dh_auto_install
