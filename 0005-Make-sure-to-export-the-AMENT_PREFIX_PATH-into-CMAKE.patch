@@ -1,7 +1,7 @@
-From f37393a9ab80a6fe214e29b98d512a1cf91423f1 Mon Sep 17 00:00:00 2001
+From c9f7e990e3d46afb24668cd369072f9717231588 Mon Sep 17 00:00:00 2001
 From: Chris Lalancette <clalancette@osrfoundation.org>
 Date: Thu, 29 Jun 2017 21:18:02 +0000
-Subject: [PATCH 5/6] Make sure to export the AMENT_PREFIX_PATH into
+Subject: [PATCH 5/7] Make sure to export the AMENT_PREFIX_PATH into
  CMAKE_PREFIX_PATH.
 
 That way ros1_bridge can find the ros2 packages.

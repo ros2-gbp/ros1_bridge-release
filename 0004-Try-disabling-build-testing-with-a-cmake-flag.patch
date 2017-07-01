@@ -1,7 +1,7 @@
-From 47f0ae793fcd9f3bf726ffdcb7e82c045958e94d Mon Sep 17 00:00:00 2001
+From ddee1ac21578b64899283fa0dea5f9987002403b Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Steven!=20Ragnar=C3=B6k?= <steven@nuclearsandwich.com>
 Date: Wed, 28 Jun 2017 18:19:53 -0400
-Subject: [PATCH 4/6] Try disabling build testing with a cmake flag.
+Subject: [PATCH 4/7] Try disabling build testing with a cmake flag.
 
 ---
  debian/rules.em | 2 +-

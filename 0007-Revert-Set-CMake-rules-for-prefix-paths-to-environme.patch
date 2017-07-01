@@ -1,23 +1,26 @@
-From 93e515aa849d3977277ce4f061c0fc1d753a6bb0 Mon Sep 17 00:00:00 2001
+From 6ceac5268cb5476a9c96b7bbeb390a80378634be Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Steven!=20Ragnar=C3=B6k?= <steven@nuclearsandwich.com>
-Date: Thu, 29 Jun 2017 18:09:34 -0400
-Subject: [PATCH 6/7] Set CMake rules for prefix paths to environment
- variables.
+Date: Thu, 29 Jun 2017 18:31:38 -0400
+Subject: [PATCH 7/7] Revert "Set CMake rules for prefix paths to environment
+ variables."
 
+This reverts commit 93e515aa849d3977277ce4f061c0fc1d753a6bb0.
+
+The patch was working fine and I clobbered it due to delayed data.
 ---
  debian/rules.em | 6 +++---
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/debian/rules.em b/debian/rules.em
-index f9a541f..93e436b 100755
+index 93e436b..f9a541f 100755
 --- a/debian/rules.em
 +++ b/debian/rules.em
 @@ -33,7 +33,7 @@ override_dh_auto_configure:
  	if [ -f "/opt/ros/kinetic/setup.sh" ]; then . "/opt/ros/kinetic/setup.sh"; fi && \
  	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
  	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
--	dh_auto_configure @(debhelper_autoconfigure_options)
-+	dh_auto_configure @(debhelper_autoconfigure_options) -DCMAKE_PREFIX_PATH="${CMAKE_PREFIX_PATH}" -DAMENT_PREFIX_PATH="${AMENT_PREFIX_PATH}"
+-	dh_auto_configure @(debhelper_autoconfigure_options) -DCMAKE_PREFIX_PATH="${CMAKE_PREFIX_PATH}" -DAMENT_PREFIX_PATH="${AMENT_PREFIX_PATH}"
++	dh_auto_configure @(debhelper_autoconfigure_options)
  
  override_dh_auto_build:
  	# In case we're installing to a non-standard location, look for a setup.sh
@@ -25,8 +28,8 @@ index f9a541f..93e436b 100755
  	if [ -f "/opt/ros/kinetic/setup.sh" ]; then . "/opt/ros/kinetic/setup.sh"; fi && \
  	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
  	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
--	dh_auto_build
-+	dh_auto_build -DCMAKE_PREFIX_PATH="${CMAKE_PREFIX_PATH}" -DAMENT_PREFIX_PATH="${AMENT_PREFIX_PATH}"
+-	dh_auto_build -DCMAKE_PREFIX_PATH="${CMAKE_PREFIX_PATH}" -DAMENT_PREFIX_PATH="${AMENT_PREFIX_PATH}"
++	dh_auto_build
  
  override_dh_auto_test:
  	# In case we're installing to a non-standard location, look for a setup.sh
@@ -34,8 +37,8 @@ index f9a541f..93e436b 100755
  	if [ -f "/opt/ros/kinetic/setup.sh" ]; then . "/opt/ros/kinetic/setup.sh"; fi && \
  	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
  	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
--	dh_auto_install
-+	dh_auto_install -DCMAKE_PREFIX_PATH="${CMAKE_PREFIX_PATH}" -DAMENT_PREFIX_PATH="${AMENT_PREFIX_PATH}"
+-	dh_auto_install -DCMAKE_PREFIX_PATH="${CMAKE_PREFIX_PATH}" -DAMENT_PREFIX_PATH="${AMENT_PREFIX_PATH}"
++	dh_auto_install
 -- 
 2.7.4
 
