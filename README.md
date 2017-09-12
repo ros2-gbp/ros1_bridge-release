@@ -12,7 +12,7 @@ If you would like to use a bridge with other interfaces (including your own cust
 
 For efficiency reasons, topics will only be bridged when matching publisher-subscriber pairs are active for a topic on either side of the bridge.
 You can use the `--bridge-all-2to1-topics` option to bridge all ROS 2 topics to ROS 1 so that tools such as `rostopic list` and `rqt` will see the topics even if there are no matching ROS 1 subscribers.
-Run `dynamic_bridge --help` for more options.
+Run `ros2 run ros1_bridge dynamic_bridge -- --help` for more options.
 
 ## Prerequisites
 
@@ -29,10 +29,17 @@ Additionally you will need to either source the ROS 1 environment or at least se
 The following ROS 1 packages are required to build and use the bridge:
 * `catkin`
 * `roscpp`
+* `roslaunch` (for `roscore` executable)
 * `rosmsg`
 * `std_msgs`
 * as well as the Python package `rospkg`
 
+To run the following examples you will also need these ROS 1 packages:
+* `rosbash` (for `rosrun` executable)
+* `roscpp_tutorials`
+* `rospy_tutorials`
+* `rostopic`
+* `rqt_image_view`
 
 ### Building the bridge from source
 
@@ -81,11 +88,13 @@ Alternatively you can do it manually by sourcing the relevant workspaces yoursel
 # . <install-space-to-ros2-overlay-ws>/local_setup.bash
 ```
 
-Then build just the ROS 1 bridge with `-j1`:
+Then build just the ROS 1 bridge:
 
 ```
-src/ament/ament_tools/scripts/ament.py build --build-tests --symlink-install -j1 --only ros1_bridge
+src/ament/ament_tools/scripts/ament.py build --build-tests --symlink-install --only ros1_bridge --force-cmake-configure
 ```
+
+*Note:* If you are building on a memory constrained system you might want to limit the number of parallel jobs by passing e.g. `-j1`.
 
 
 ## Example 1: run the bridge and the example talker and listener
@@ -121,7 +130,7 @@ Once a *matching* topic has been detected it starts to bridge the messages on th
 # . ~/ros_catkin_ws/install_isolated/setup.bash
 . <install-space-with-bridge>/setup.bash
 export ROS_MASTER_URI=http://localhost:11311
-dynamic_bridge
+ros2 run ros1_bridge dynamic_bridge
 ```
 
 The program will start outputting the currently available topics in ROS 1 and ROS 2 in a regular interval.
@@ -147,7 +156,7 @@ Now we start the ROS 2 listener from the `demo_nodes_cpp` ROS 2 package.
 ```
 # Shell D:
 . <install-space-with-ros2>/setup.bash
-listener
+ros2 run demo_nodes_cpp listener
 ```
 
 The ROS 2 node will start printing the received messages to the console.
@@ -194,17 +203,17 @@ roscore
 # . ~/ros_catkin_ws/install_isolated/setup.bash
 . <install-space-with-bridge>/setup.bash
 export ROS_MASTER_URI=http://localhost:11311
-dynamic_bridge
+ros2 run ros1_bridge dynamic_bridge
 ```
 
 ---
 
-Now we start the ROS 2 talker from the `demo_nodes_cpp` ROS 2 package.
+Now we start the ROS 2 talker from the `demo_nodes_py` ROS 2 package.
 
 ```
 # Shell C:
 . <install-space-with-ros2>/setup.bash
-talker
+ros2 run demo_nodes_py talker
 ```
 
 ---
@@ -243,7 +252,7 @@ roscore
 # . ~/ros_catkin_ws/install_isolated/setup.bash
 . <workspace-with-bridge>/install/setup.bash
 export ROS_MASTER_URI=http://localhost:11311
-dynamic_bridge
+ros2 run ros1_bridge dynamic_bridge
 ```
 
 ---
@@ -264,7 +273,7 @@ Now we start the ROS 2 image publisher from the `image_tools` ROS 2 package:
 ```
 # Shell D:
 . <workspace-with-ros2>/install/setup.bash
-cam2image
+ros2 run image_tools cam2image
 ```
 
 You should see the current images in `rqt_image_view` which are coming from the ROS 2 node `cam2image` and are being passed along by the bridge.
@@ -318,7 +327,7 @@ Launch dynamic_bridge:
 . <ros-install-dir>/setup.bash
 . <ros2-install-dir>/setup.bash
 export ROS_MASTER_URI=http://localhost:11311
-dynamic_bridge
+ros2 run ros1_bridge dynamic_bridge
 ```
 
 Launch TwoInts server:
@@ -335,5 +344,5 @@ Launch AddTwoInts client:
 ```
 # Shell D:
 . <ros2-install-dir>/setup.bash
-add_two_ints_client
+ros2 run demo_nodes_cpp add_two_ints_client
 ```
