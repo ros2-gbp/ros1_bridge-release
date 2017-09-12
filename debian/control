@@ -1,0 +1,12 @@
+Source: ros-r2b3-ros1-bridge
+Section: misc
+Priority: extra
+Maintainer: Dirk Thomas <dthomas@osrfoundation.org>
+Build-Depends: debhelper (>= 9.0.0), ), python-rospkg, ros-kinetic-catkin, ros-kinetic-common-msgs, ros-kinetic-common-msgs, ros-kinetic-common-msgs, ros-kinetic-rosbash, ros-kinetic-roscpp, ros-kinetic-roscpp-tutorials, ros-kinetic-roslaunch, ros-kinetic-rosmsg, ros-kinetic-rospy-tutorials, ros-kinetic-std-msgs, ros-kinetic-std-srvs, ros-kinetic-std-msgs, ros-kinetic-tf2-msgs, pkg-config, python3-yaml, ros-r2b3-ament-cmake, ros-r2b3-ament-cmake-nose, ros-r2b3-ament-index-python, ros-r2b3-ament-lint-auto, ros-r2b3-ament-lint-common, ros-r2b3-demo-nodes-cpp, ros-r2b3-diagnostic-msgs, ros-r2b3-launch, ros-r2b3-rclcpp, ros-r2b3-rcutils, ros-r2b3-rmw-implementation-cmake, ros-r2b3-ros2run, ros-r2b3-rosidl-cmake, ros-r2b3-rosidl-parser, ros-r2b3-std-msgs, ros-r2b3-ros-workspace pkg-config, python3-yaml, ros-r2b3-ament-cmake, ros-r2b3-ament-cmake-nose, ros-r2b3-ament-index-python, ros-r2b3-ament-lint-auto, ros-r2b3-ament-lint-common, ros-r2b3-demo-nodes-cpp, ros-r2b3-diagnostic-msgs, ros-r2b3-launch, ros-r2b3-rclcpp, ros-r2b3-rcutils, ros-r2b3-rmw-implementation-cmake, ros-r2b3-ros2run, ros-r2b3-rosidl-cmake, ros-r2b3-rosidl-parser, ros-r2b3-std-msgs, ros-r2b3-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-r2b3-ros1-bridge
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python-rospkg, ros-kinetic-catkin, ros-kinetic-common-msgs, ros-kinetic-common-msgs, ros-kinetic-common-msgs, ros-kinetic-rosbash, ros-kinetic-roscpp, ros-kinetic-roscpp-tutorials, ros-kinetic-roslaunch, ros-kinetic-rosmsg, ros-kinetic-rospy-tutorials, ros-kinetic-std-msgs, ros-kinetic-std-srvs, ros-kinetic-std-msgs, ros-kinetic-tf2-msgs, python3-yaml, ros-r2b3-rclcpp, ros-r2b3-rcutils, ros-r2b3-std-msgs, ros-r2b3-ros-workspace
+Description: A simple bridge between ROS 1 and ROS 2
