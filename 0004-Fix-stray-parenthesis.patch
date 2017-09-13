@@ -1,0 +1,25 @@
+From 18e76f8038c2d500cf47b6f446df2cea0c4962c9 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Steven!=20Ragnar=C3=B6k?= <steven@nuclearsandwich.com>
+Date: Wed, 13 Sep 2017 10:55:51 -0400
+Subject: [PATCH 4/4] Fix stray parenthesis.
+
+---
+ debian/control.em | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/debian/control.em b/debian/control.em
+index aef2fe5..1c9959b 100644
+--- a/debian/control.em
++++ b/debian/control.em
+@@ -2,7 +2,7 @@ Source: @(Package)
+ Section: misc
+ Priority: extra
+ Maintainer: @(Maintainer)
+-Build-Depends: debhelper (>= @(debhelper_version).0.0), ), python-rospkg, ros-kinetic-catkin, ros-kinetic-common-msgs, ros-kinetic-rosbash, ros-kinetic-roscpp, ros-kinetic-roscpp-tutorials, ros-kinetic-roslaunch, ros-kinetic-rosmsg, ros-kinetic-rospy-tutorials, ros-kinetic-std-msgs, ros-kinetic-std-srvs, ros-kinetic-tf2-msgs, @(', '.join(BuildDepends)) @(', '.join(BuildDepends))
++Build-Depends: debhelper (>= @(debhelper_version).0.0), python-rospkg, ros-kinetic-catkin, ros-kinetic-common-msgs, ros-kinetic-rosbash, ros-kinetic-roscpp, ros-kinetic-roscpp-tutorials, ros-kinetic-roslaunch, ros-kinetic-rosmsg, ros-kinetic-rospy-tutorials, ros-kinetic-std-msgs, ros-kinetic-std-srvs, ros-kinetic-tf2-msgs, @(', '.join(BuildDepends)) @(', '.join(BuildDepends))
+ Homepage: @(Homepage)
+ Standards-Version: 3.9.2
+ 
+-- 
+2.7.4
+

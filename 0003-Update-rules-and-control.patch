@@ -1,7 +1,7 @@
-From fbd12439f7ed87af36a8bd0304341d4dd86d0bf3 Mon Sep 17 00:00:00 2001
+From a67ce56a6f1dc990756d42670571e3d4f2347dba Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Steven!=20Ragnar=C3=B6k?= <steven@nuclearsandwich.com>
 Date: Wed, 13 Sep 2017 10:52:33 -0400
-Subject: [PATCH 3/3] Update rules and control.
+Subject: [PATCH 3/4] Update rules and control.
 
 ---
  debian/control.em | 4 ++--
