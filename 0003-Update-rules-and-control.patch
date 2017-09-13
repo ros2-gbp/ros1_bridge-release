@@ -1,0 +1,75 @@
+From fbd12439f7ed87af36a8bd0304341d4dd86d0bf3 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Steven!=20Ragnar=C3=B6k?= <steven@nuclearsandwich.com>
+Date: Wed, 13 Sep 2017 10:52:33 -0400
+Subject: [PATCH 3/3] Update rules and control.
+
+---
+ debian/control.em | 4 ++--
+ debian/rules.em   | 5 +++++
+ 2 files changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/debian/control.em b/debian/control.em
+index 6c315b9..aef2fe5 100644
+--- a/debian/control.em
++++ b/debian/control.em
+@@ -2,13 +2,13 @@ Source: @(Package)
+ Section: misc
+ Priority: extra
+ Maintainer: @(Maintainer)
+-Build-Depends: debhelper (>= @(debhelper_version).0.0), ), python-rospkg, ros-kinetic-catkin, ros-kinetic-common-msgs, ros-kinetic-common-msgs, ros-kinetic-common-msgs, ros-kinetic-rosbash, ros-kinetic-roscpp, ros-kinetic-roscpp-tutorials, ros-kinetic-roslaunch, ros-kinetic-rosmsg, ros-kinetic-rospy-tutorials, ros-kinetic-std-msgs, ros-kinetic-std-srvs, ros-kinetic-std-msgs, ros-kinetic-tf2-msgs, @(', '.join(BuildDepends)) @(', '.join(BuildDepends))
++Build-Depends: debhelper (>= @(debhelper_version).0.0), ), python-rospkg, ros-kinetic-catkin, ros-kinetic-common-msgs, ros-kinetic-rosbash, ros-kinetic-roscpp, ros-kinetic-roscpp-tutorials, ros-kinetic-roslaunch, ros-kinetic-rosmsg, ros-kinetic-rospy-tutorials, ros-kinetic-std-msgs, ros-kinetic-std-srvs, ros-kinetic-tf2-msgs, @(', '.join(BuildDepends)) @(', '.join(BuildDepends))
+ Homepage: @(Homepage)
+ Standards-Version: 3.9.2
+ 
+ Package: @(Package)
+ Architecture: any
+-Depends: ${shlibs:Depends}, ${misc:Depends}, python-rospkg, ros-kinetic-catkin, ros-kinetic-common-msgs, ros-kinetic-common-msgs, ros-kinetic-common-msgs, ros-kinetic-rosbash, ros-kinetic-roscpp, ros-kinetic-roscpp-tutorials, ros-kinetic-roslaunch, ros-kinetic-rosmsg, ros-kinetic-rospy-tutorials, ros-kinetic-std-msgs, ros-kinetic-std-srvs, ros-kinetic-std-msgs, ros-kinetic-tf2-msgs, @(', '.join(Depends))
++Depends: ${shlibs:Depends}, ${misc:Depends}, python-rospkg, ros-kinetic-catkin, ros-kinetic-common-msgs, ros-kinetic-rosbash, ros-kinetic-roscpp, ros-kinetic-roscpp-tutorials, ros-kinetic-roslaunch, ros-kinetic-rosmsg, ros-kinetic-rospy-tutorials, ros-kinetic-std-msgs, ros-kinetic-std-srvs, ros-kinetic-tf2-msgs, @(', '.join(Depends))
+ @[if Conflicts]Conflicts: @(', '.join(Conflicts))@\n@[end if]@
+ @[if Replaces]Replaces: @(', '.join(Replaces))@\n@[end if]@
+ Description: @(Description)
+diff --git a/debian/rules.em b/debian/rules.em
+index 15b5d9f..02a37af 100755
+--- a/debian/rules.em
++++ b/debian/rules.em
+@@ -27,6 +27,7 @@ override_dh_auto_configure:
+ 	# set things like CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
+ 	if [ -f "/opt/ros/kinetic/setup.sh" ]; then . "/opt/ros/kinetic/setup.sh"; fi && \
+ 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
++	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
+ 	dh_auto_configure -- \
+ 		-DCMAKE_INSTALL_PREFIX="@(InstallationPrefix)" \
+ 		-DAMENT_PREFIX_PATH="@(InstallationPrefix)"
+@@ -37,6 +38,7 @@ override_dh_auto_build:
+ 	# set things like CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
+ 	if [ -f "/opt/ros/kinetic/setup.sh" ]; then . "/opt/ros/kinetic/setup.sh"; fi && \
+ 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
++	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
+ 	dh_auto_build
+ 
+ override_dh_auto_test:
+@@ -46,6 +48,7 @@ override_dh_auto_test:
+ 	echo -- Running tests. Even if one of them fails the build is not canceled.
+ 	if [ -f "/opt/ros/kinetic/setup.sh" ]; then . "/opt/ros/kinetic/setup.sh"; fi && \
+ 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
++	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
+ 	dh_auto_test || true
+ 
+ override_dh_shlibdeps:
+@@ -54,6 +57,7 @@ override_dh_shlibdeps:
+ 	# set things like CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
+ 	if [ -f "/opt/ros/kinetic/setup.sh" ]; then . "/opt/ros/kinetic/setup.sh"; fi && \
+ 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
++	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
+ 	dh_shlibdeps -l$(CURDIR)/debian/@(Package)/@(InstallationPrefix)/lib/
+ 
+ override_dh_auto_install:
+@@ -62,4 +66,5 @@ override_dh_auto_install:
+ 	# set things like CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
+ 	if [ -f "/opt/ros/kinetic/setup.sh" ]; then . "/opt/ros/kinetic/setup.sh"; fi && \
+ 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
++	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
+ 	dh_auto_install
+-- 
+2.7.4
+
