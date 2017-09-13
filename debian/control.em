@@ -2,7 +2,7 @@ Source: @(Package)
 Section: misc
 Priority: extra
 Maintainer: @(Maintainer)
-Build-Depends: debhelper (>= @(debhelper_version).0.0), ), python-rospkg, ros-kinetic-catkin, ros-kinetic-common-msgs, ros-kinetic-rosbash, ros-kinetic-roscpp, ros-kinetic-roscpp-tutorials, ros-kinetic-roslaunch, ros-kinetic-rosmsg, ros-kinetic-rospy-tutorials, ros-kinetic-std-msgs, ros-kinetic-std-srvs, ros-kinetic-tf2-msgs, @(', '.join(BuildDepends)) @(', '.join(BuildDepends))
+Build-Depends: debhelper (>= @(debhelper_version).0.0), python-rospkg, ros-kinetic-catkin, ros-kinetic-common-msgs, ros-kinetic-rosbash, ros-kinetic-roscpp, ros-kinetic-roscpp-tutorials, ros-kinetic-roslaunch, ros-kinetic-rosmsg, ros-kinetic-rospy-tutorials, ros-kinetic-std-msgs, ros-kinetic-std-srvs, ros-kinetic-tf2-msgs, @(', '.join(BuildDepends)) @(', '.join(BuildDepends))
 Homepage: @(Homepage)
 Standards-Version: 3.9.2
 
