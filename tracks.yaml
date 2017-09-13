@@ -39,7 +39,7 @@ tracks:
     devel_branch: release-beta3
     last_version: 0.0.2
     name: upstream
-    patches: null
+    patches: debian
     release_inc: '4'
     release_repo_url: git@github.com:ros2-gbp/ros1_bridge-release
     release_tag: release-beta3
