@@ -1,7 +1,7 @@
-From 18e76f8038c2d500cf47b6f446df2cea0c4962c9 Mon Sep 17 00:00:00 2001
+From 05f23596e093c8739431eaf15093dba821e89121 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Steven!=20Ragnar=C3=B6k?= <steven@nuclearsandwich.com>
 Date: Wed, 13 Sep 2017 10:55:51 -0400
-Subject: [PATCH 4/4] Fix stray parenthesis.
+Subject: [PATCH 4/5] Fix stray parenthesis.
 
 ---
  debian/control.em | 2 +-
