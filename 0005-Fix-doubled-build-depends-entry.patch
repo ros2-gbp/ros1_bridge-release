@@ -1,7 +1,7 @@
-From 3c6f5ea91ae4c6cc4435311525c305a13794fbb4 Mon Sep 17 00:00:00 2001
+From 23b6355d4e52240f79fdeb9f4bce4009ab87d964 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Steven!=20Ragnar=C3=B6k?= <steven@nuclearsandwich.com>
 Date: Wed, 13 Sep 2017 11:36:32 -0400
-Subject: [PATCH 5/5] Fix doubled build depends entry.
+Subject: [PATCH 5/6] Fix doubled build depends entry.
 
 ---
  debian/control.em | 2 +-

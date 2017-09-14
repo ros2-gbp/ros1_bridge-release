@@ -1,0 +1,32 @@
+From 25a6c33abce4d39ef3cb917f93df42c1290df80e Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Steven!=20Ragnar=C3=B6k?= <steven@nuclearsandwich.com>
+Date: Wed, 13 Sep 2017 15:28:03 -0400
+Subject: [PATCH 6/6] Update kinetic dependencies to match ros2 dependencies.
+
+---
+ debian/control.em | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/debian/control.em b/debian/control.em
+index 5703844..cf8db51 100644
+--- a/debian/control.em
++++ b/debian/control.em
+@@ -2,13 +2,13 @@ Source: @(Package)
+ Section: misc
+ Priority: extra
+ Maintainer: @(Maintainer)
+-Build-Depends: debhelper (>= @(debhelper_version).0.0), python-rospkg, ros-kinetic-catkin, ros-kinetic-common-msgs, ros-kinetic-rosbash, ros-kinetic-roscpp, ros-kinetic-roscpp-tutorials, ros-kinetic-roslaunch, ros-kinetic-rosmsg, ros-kinetic-rospy-tutorials, ros-kinetic-std-msgs, ros-kinetic-std-srvs, ros-kinetic-tf2-msgs, @(', '.join(BuildDepends))
++Build-Depends: debhelper (>= @(debhelper_version).0.0), python-rospkg, ros-kinetic-actionlib-msgs, ros-kinetic-catkin, ros-kinetic-common-msgs, ros-kinetic-geometry-msgs, ros-kinetic-nav-msgs, ros-kinetic-rosbash, ros-kinetic-roscpp, ros-kinetic-roscpp-tutorials, ros-kinetic-roslaunch, ros-kinetic-rosmsg, ros-kinetic-rospy-tutorials, ros-kinetic-sensor-msgs, ros-kinetic-std-msgs, ros-kinetic-std-srvs, ros-kinetic-stereo-msgs, ros-kinetic-tf2-msgs, ros-kinetic-trajectory-msgs, ros-kinetic-visualization-msgs, @(', '.join(BuildDepends))
+ Homepage: @(Homepage)
+ Standards-Version: 3.9.2
+ 
+ Package: @(Package)
+ Architecture: any
+-Depends: ${shlibs:Depends}, ${misc:Depends}, python-rospkg, ros-kinetic-catkin, ros-kinetic-common-msgs, ros-kinetic-rosbash, ros-kinetic-roscpp, ros-kinetic-roscpp-tutorials, ros-kinetic-roslaunch, ros-kinetic-rosmsg, ros-kinetic-rospy-tutorials, ros-kinetic-std-msgs, ros-kinetic-std-srvs, ros-kinetic-tf2-msgs, @(', '.join(Depends))
++Depends: ${shlibs:Depends}, ${misc:Depends}, python-rospkg, ros-kinetic-actionlib-msgs, ros-kinetic-catkin, ros-kinetic-common-msgs, ros-kinetic-geometry-msgs, ros-kinetic-nav-msgs, ros-kinetic-rosbash, ros-kinetic-roscpp, ros-kinetic-roscpp-tutorials, ros-kinetic-roslaunch, ros-kinetic-rosmsg, ros-kinetic-rospy-tutorials, ros-kinetic-sensor-msgs, ros-kinetic-std-msgs, ros-kinetic-std-srvs, ros-kinetic-stereo-msgs, ros-kinetic-tf2-msgs, ros-kinetic-trajectory-msgs, ros-kinetic-visualization-msgs, @(', '.join(Depends))
+ @[if Conflicts]Conflicts: @(', '.join(Conflicts))@\n@[end if]@
+ @[if Replaces]Replaces: @(', '.join(Replaces))@\n@[end if]@
+ Description: @(Description)
+-- 
+2.7.4
+

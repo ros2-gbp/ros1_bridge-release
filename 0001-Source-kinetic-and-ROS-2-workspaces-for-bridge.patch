@@ -1,7 +1,7 @@
-From d34b816686a88a6eaa472c72b6c4c5b74bee720c Mon Sep 17 00:00:00 2001
+From 9859a4930f93105a8301f92ca0bf19a8c7ea31dd Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Steven!=20Ragnar=C3=B6k?= <steven@nuclearsandwich.com>
 Date: Tue, 12 Sep 2017 02:02:47 -0400
-Subject: [PATCH 1/5] Source kinetic and ROS 2 workspaces for bridge.
+Subject: [PATCH 1/6] Source kinetic and ROS 2 workspaces for bridge.
 
 ---
  debian/rules.em | 5 +++++

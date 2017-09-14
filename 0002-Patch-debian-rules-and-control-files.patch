@@ -1,7 +1,7 @@
-From e5093471896c4462269243b1f7d2850ac4ae5bbc Mon Sep 17 00:00:00 2001
+From 1376512550c3682144af6e2fe0eac83a4847e275 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Steven!=20Ragnar=C3=B6k?= <steven@nuclearsandwich.com>
 Date: Tue, 12 Sep 2017 02:06:00 -0400
-Subject: [PATCH 2/5] Patch debian rules and control files.
+Subject: [PATCH 2/6] Patch debian rules and control files.
 
 ---
  debian/control.em | 4 ++--
