@@ -2,7 +2,7 @@
 <?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="2">
   <name>ros1_bridge</name>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
   <description>A simple bridge between ROS 1 and ROS 2</description>
   <maintainer email="dthomas@osrfoundation.org">Dirk Thomas</maintainer>
   <license>Apache License 2.0</license>
@@ -19,6 +19,7 @@
   <build_depend>rmw_implementation_cmake</build_depend>
   <build_depend>std_msgs</build_depend>
 
+
   <exec_depend>python3-yaml</exec_depend>
   <exec_depend>rclcpp</exec_depend>
   <exec_depend>rcutils</exec_depend>
@@ -31,6 +32,31 @@
   <test_depend>diagnostic_msgs</test_depend>
   <test_depend>launch</test_depend>
   <test_depend>ros2run</test_depend>
+
+
+  <!-- Bundles useful msgs and srvs packages for binary release -->
+  <build_depend>actionlib_msgs</build_depend>
+  <exec_depend>actionlib_msgs</exec_depend>
+  <build_depend>diagnostic_msgs</build_depend>
+  <exec_depend>diagnostic_msgs</exec_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <build_depend>nav_msgs</build_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <build_depend>shape_msgs</build_depend>
+  <exec_depend>shape_msgs</exec_depend>
+  <build_depend>std_srvs</build_depend>
+  <exec_depend>std_srvs</exec_depend>
+  <build_depend>stereo_msgs</build_depend>
+  <exec_depend>stereo_msgs</exec_depend>
+  <build_depend>tf2_msgs</build_depend>
+  <exec_depend>tf2_msgs</exec_depend>
+  <build_depend>trajectory_msgs</build_depend>
+  <exec_depend>trajectory_msgs</exec_depend>
+  <build_depend>visualization_msgs</build_depend>
+  <exec_depend>visualization_msgs</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
