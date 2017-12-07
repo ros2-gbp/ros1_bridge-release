@@ -120,7 +120,7 @@ bool parse_command_options(
 
 void update_bridge(
   ros::NodeHandle & ros1_node,
-  rclcpp::node::Node::SharedPtr ros2_node,
+  rclcpp::Node::SharedPtr ros2_node,
   const std::map<std::string, std::string> & ros1_publishers,
   const std::map<std::string, std::string> & ros1_subscribers,
   const std::map<std::string, std::string> & ros2_publishers,
@@ -271,8 +271,7 @@ void update_bridge(
     std::string topic_name = it.first;
     if (
       ros1_publishers.find(topic_name) == ros1_publishers.end() ||
-      (!bridge_all_1to2_topics && ros2_subscribers.find(topic_name) == ros2_subscribers.end())
-    )
+      (!bridge_all_1to2_topics && ros2_subscribers.find(topic_name) == ros2_subscribers.end()))
     {
       to_be_removed_1to2.push_back(topic_name);
     }
@@ -287,8 +286,7 @@ void update_bridge(
     std::string topic_name = it.first;
     if (
       (!bridge_all_2to1_topics && ros1_subscribers.find(topic_name) == ros1_subscribers.end()) ||
-      ros2_publishers.find(topic_name) == ros2_publishers.end()
-    )
+      ros2_publishers.find(topic_name) == ros2_publishers.end())
     {
       to_be_removed_2to1.push_back(topic_name);
     }
@@ -389,8 +387,8 @@ void get_ros1_service_info(
   }
   ros::TransportTCPPtr transport(new ros::TransportTCP(nullptr, ros::TransportTCP::SYNCHRONOUS));
   auto transport_exit = rclcpp::make_scope_exit([transport]() {
-    transport->close();
-  });
+        transport->close();
+      });
   if (!transport->connect(host, port)) {
     fprintf(stderr, "Failed to connect to %s:%d\n", host.data(), port);
     return;
@@ -460,7 +458,7 @@ int main(int argc, char * argv[])
 
   // ROS 2 node
   rclcpp::init(argc, argv);
-  auto ros2_node = rclcpp::node::Node::make_shared("ros_bridge");
+  auto ros2_node = rclcpp::Node::make_shared("ros_bridge");
 
   // mapping of available topic names to type names
   std::map<std::string, std::string> ros1_publishers;
@@ -760,7 +758,7 @@ int main(int argc, char * argv[])
 
   // ROS 2 spinning loop
   rclcpp::executors::SingleThreadedExecutor executor;
-  while (ros1_node.ok() && rclcpp::utilities::ok()) {
+  while (ros1_node.ok() && rclcpp::ok()) {
     executor.spin_node_once(ros2_node);
   }
 

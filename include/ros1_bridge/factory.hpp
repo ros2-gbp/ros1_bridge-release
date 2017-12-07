@@ -26,8 +26,6 @@
 
 #include "ros1_bridge/factory_interface.hpp"
 
-#define _ros1_bridge_type_to_name(x) #x
-
 namespace ros1_bridge
 {
 
@@ -35,6 +33,12 @@ template<typename ROS1_T, typename ROS2_T>
 class Factory : public FactoryInterface
 {
 public:
+  Factory(
+    const std::string & ros1_type_name, const std::string & ros2_type_name)
+  : ros1_type_name_(ros1_type_name),
+    ros2_type_name_(ros2_type_name)
+  {}
+
   ros::Publisher
   create_ros1_publisher(
     ros::NodeHandle node,
@@ -44,9 +48,9 @@ public:
     return node.advertise<ROS1_T>(topic_name, queue_size);
   }
 
-  rclcpp::publisher::PublisherBase::SharedPtr
+  rclcpp::PublisherBase::SharedPtr
   create_ros2_publisher(
-    rclcpp::node::Node::SharedPtr node,
+    rclcpp::Node::SharedPtr node,
     const std::string & topic_name,
     size_t queue_size)
   {
@@ -60,7 +64,7 @@ public:
     ros::NodeHandle node,
     const std::string & topic_name,
     size_t queue_size,
-    rclcpp::publisher::PublisherBase::SharedPtr ros2_pub)
+    rclcpp::PublisherBase::SharedPtr ros2_pub)
   {
     // workaround for https://github.com/ros/roscpp_core/issues/22 to get the connection header
     ros::SubscribeOptions ops;
@@ -70,23 +74,28 @@ public:
     ops.datatype = ros::message_traits::datatype<ROS1_T>();
     ops.helper = ros::SubscriptionCallbackHelperPtr(
       new ros::SubscriptionCallbackHelperT<const ros::MessageEvent<ROS1_T const> &>(
-        boost::bind(&Factory<ROS1_T, ROS2_T>::ros1_callback, _1, ros2_pub)));
+        boost::bind(
+          &Factory<ROS1_T, ROS2_T>::ros1_callback,
+          _1, ros2_pub, ros1_type_name_, ros2_type_name_)));
     return node.subscribe(ops);
   }
 
-  rclcpp::subscription::SubscriptionBase::SharedPtr
+  rclcpp::SubscriptionBase::SharedPtr
   create_ros2_subscriber(
-    rclcpp::node::Node::SharedPtr node,
+    rclcpp::Node::SharedPtr node,
     const std::string & topic_name,
     size_t queue_size,
     ros::Publisher ros1_pub)
   {
     rmw_qos_profile_t custom_qos_profile = rmw_qos_profile_sensor_data;
     custom_qos_profile.depth = queue_size;
+    const std::string & ros1_type_name = ros1_type_name_;
+    const std::string & ros2_type_name = ros2_type_name_;
     // TODO(wjwwood): use a lambda until create_subscription supports std/boost::bind.
     auto callback =
-      [this, ros1_pub](const typename ROS2_T::SharedPtr msg) {
-        return this->ros2_callback(msg, ros1_pub);
+      [this, ros1_pub, ros1_type_name, ros2_type_name](const typename ROS2_T::SharedPtr msg) {
+        return this->ros2_callback(
+          msg, ros1_pub, ros1_type_name, ros2_type_name);
       };
     return node->create_subscription<ROS2_T>(
       topic_name, callback, custom_qos_profile, nullptr, true);
@@ -96,11 +105,13 @@ protected:
   static
   void ros1_callback(
     const ros::MessageEvent<ROS1_T const> & ros1_msg_event,
-    rclcpp::publisher::PublisherBase::SharedPtr ros2_pub)
+    rclcpp::PublisherBase::SharedPtr ros2_pub,
+    const std::string & ros1_type_name,
+    const std::string & ros2_type_name)
   {
-    typename rclcpp::publisher::Publisher<ROS2_T>::SharedPtr typed_ros2_pub;
+    typename rclcpp::Publisher<ROS2_T>::SharedPtr typed_ros2_pub;
     typed_ros2_pub =
-      std::dynamic_pointer_cast<typename rclcpp::publisher::Publisher<ROS2_T>>(ros2_pub);
+      std::dynamic_pointer_cast<typename rclcpp::Publisher<ROS2_T>>(ros2_pub);
 
     if (!typed_ros2_pub) {
       throw std::runtime_error("Invalid type for publisher");
@@ -125,23 +136,25 @@ protected:
     auto ros2_msg = std::make_shared<ROS2_T>();
     convert_1_to_2(*ros1_msg, *ros2_msg);
     RCUTILS_LOG_INFO_ONCE_NAMED(
-      "ros1_bridge", "Passing message from ROS 1 "
-      _ros1_bridge_type_to_name(ROS1_T) " to ROS 2 "
-      _ros1_bridge_type_to_name(ROS2_T) " (showing msg only once per type)");
+      "ros1_bridge",
+      "Passing message from ROS 1 %s to ROS 2 %s (showing msg only once per type)",
+      ros1_type_name.c_str(), ros2_type_name.c_str());
     typed_ros2_pub->publish(ros2_msg);
   }
 
   static
   void ros2_callback(
     typename ROS2_T::SharedPtr ros2_msg,
-    ros::Publisher ros1_pub)
+    ros::Publisher ros1_pub,
+    const std::string & ros1_type_name,
+    const std::string & ros2_type_name)
   {
     ROS1_T ros1_msg;
     convert_2_to_1(*ros2_msg, ros1_msg);
     RCUTILS_LOG_INFO_ONCE_NAMED(
-      "ros1_bridge", "Passing message from ROS 2 "
-      _ros1_bridge_type_to_name(ROS2_T) " to ROS 1 "
-      _ros1_bridge_type_to_name(ROS1_T) " (showing msg only once per type)");
+      "ros1_bridge",
+      "Passing message from ROS 2 %s to ROS 1 %s (showing msg only once per type)",
+      ros1_type_name.c_str(), ros2_type_name.c_str());
     ros1_pub.publish(ros1_msg);
   }
 
@@ -158,6 +171,9 @@ public:
   convert_2_to_1(
     const ROS2_T & ros2_msg,
     ROS1_T & ros1_msg);
+
+  std::string ros1_type_name_;
+  std::string ros2_type_name_;
 };
 
 template<class ROS1_T, class ROS2_T>
@@ -183,10 +199,10 @@ public:
   }
 
   bool forward_1_to_2(
-    rclcpp::client::ClientBase::SharedPtr cli,
+    rclcpp::ClientBase::SharedPtr cli,
     const ROS1Request & request1, ROS1Response & response1)
   {
-    auto client = std::dynamic_pointer_cast<rclcpp::client::Client<ROS2_T>>(cli);
+    auto client = std::dynamic_pointer_cast<rclcpp::Client<ROS2_T>>(cli);
     if (!client) {
       fprintf(stderr, "Failed to get the client.\n");
       return false;
@@ -194,7 +210,7 @@ public:
     auto request2 = std::make_shared<ROS2Request>();
     translate_1_to_2(request1, *request2);
     while (!client->wait_for_service(std::chrono::seconds(1))) {
-      if (!rclcpp::utilities::ok()) {
+      if (!rclcpp::ok()) {
         fprintf(stderr, "Client was interrupted while waiting for the service. Exiting.\n");
         return false;
       }
@@ -213,7 +229,7 @@ public:
   }
 
   ServiceBridge1to2 service_bridge_1_to_2(
-    ros::NodeHandle & ros1_node, rclcpp::node::Node::SharedPtr ros2_node, const std::string & name)
+    ros::NodeHandle & ros1_node, rclcpp::Node::SharedPtr ros2_node, const std::string & name)
   {
     ServiceBridge1to2 bridge;
     bridge.client = ros2_node->create_client<ROS2_T>(name);
@@ -224,7 +240,7 @@ public:
   }
 
   ServiceBridge2to1 service_bridge_2_to_1(
-    ros::NodeHandle & ros1_node, rclcpp::node::Node::SharedPtr ros2_node, const std::string & name)
+    ros::NodeHandle & ros1_node, rclcpp::Node::SharedPtr ros2_node, const std::string & name)
   {
     ServiceBridge2to1 bridge;
     bridge.client = ros1_node.serviceClient<ROS1_T>(name);
