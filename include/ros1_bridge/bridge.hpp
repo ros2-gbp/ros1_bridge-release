@@ -59,7 +59,10 @@ get_2to1_mapping(
   std::string & ros1_type_name);
 
 std::map<std::string, std::string>
-get_all_mappings_2to1();
+get_all_message_mappings_2to1();
+
+std::map<std::string, std::string>
+get_all_service_mappings_2to1();
 
 std::shared_ptr<FactoryInterface>
 get_factory(
@@ -99,14 +102,15 @@ create_bridge_from_2_to_1(
   size_t subscriber_queue_size,
   const std::string & ros1_type_name,
   const std::string & ros1_topic_name,
-  size_t publisher_queue_size)
+  size_t publisher_queue_size,
+  rclcpp::PublisherBase::SharedPtr ros2_pub = nullptr)
 {
   auto factory = get_factory(ros1_type_name, ros2_type_name);
   auto ros1_pub = factory->create_ros1_publisher(
     ros1_node, ros1_topic_name, publisher_queue_size);
 
   auto ros2_sub = factory->create_ros2_subscriber(
-    ros2_node, ros2_topic_name, subscriber_queue_size, ros1_pub);
+    ros2_node, ros2_topic_name, subscriber_queue_size, ros1_pub, ros2_pub);
 
   Bridge2to1Handles handles;
   handles.ros2_subscriber = ros2_sub;
@@ -130,7 +134,8 @@ create_bidirectional_bridge(
     ros1_type_name, topic_name, queue_size, ros2_type_name, topic_name, queue_size);
   handles.bridge2to1 = create_bridge_from_2_to_1(
     ros2_node, ros1_node,
-    ros2_type_name, topic_name, queue_size, ros1_type_name, topic_name, queue_size);
+    ros2_type_name, topic_name, queue_size, ros1_type_name, topic_name, queue_size,
+    handles.bridge1to2.ros2_publisher);
   return handles;
 }
 

@@ -18,7 +18,7 @@ import re
 import sys
 
 import ament_index_python
-from ament_package import parse_package
+from catkin_pkg.package import parse_package
 # ROS 1 imports
 import genmsg
 import genmsg.msg_loader
@@ -28,26 +28,8 @@ import rosidl_parser
 
 import yaml
 
-# import catkin_pkg and rospkg which are required by rosmsg
+# import rospkg which is required by rosmsg
 # and likely only available for Python 2
-try:
-    import catkin_pkg
-except ImportError:
-    from importlib.machinery import SourceFileLoader
-    import subprocess
-    for python_executable in ['python2', 'python2.7']:
-        try:
-            catkin_pkg_path = subprocess.check_output(
-                [python_executable, '-c', 'import catkin_pkg; print(catkin_pkg.__file__)'])
-        except (subprocess.CalledProcessError, FileNotFoundError):
-            continue
-        catkin_pkg_path = catkin_pkg_path.decode().strip()
-        if catkin_pkg_path.endswith('.pyc'):
-            catkin_pkg_path = catkin_pkg_path[:-1]
-        catkin_pkg = SourceFileLoader('catkin_pkg', catkin_pkg_path).load_module()
-    if not catkin_pkg:
-        raise
-
 try:
     import rospkg
 except ImportError:
@@ -84,14 +66,17 @@ import rosmsg  # noqa
 
 def generate_cpp(output_path, template_dir):
     data = generate_messages()
+    data.update(generate_services())
 
     template_file = os.path.join(template_dir, 'get_mappings.cpp.em')
     output_file = os.path.join(output_path, 'get_mappings.cpp')
-    data_for_template = {'mappings': data['mappings']}
+    data_for_template = {
+        'mappings': data['mappings'], 'services': data['services']}
     expand_template(template_file, data_for_template, output_file)
 
-    data.update(generate_services())
     unique_package_names = set(data['ros2_package_names_msg'] + data['ros2_package_names_srv'])
+    # skip builtin_interfaces since there is a custom implementation
+    unique_package_names -= {'builtin_interfaces'}
     data['ros2_package_names'] = list(unique_package_names)
 
     template_file = os.path.join(template_dir, 'get_factory.cpp.em')
@@ -133,6 +118,17 @@ def generate_messages():
     message_pairs = determine_message_pairs(ros1_msgs, ros2_msgs, package_pairs, mapping_rules)
 
     mappings = []
+    # add custom mapping for builtin_interfaces
+    for msg_name in ('Duration', 'Time'):
+        ros1_msg = [
+            m for m in ros1_msgs
+            if m.package_name == 'std_msgs' and m.message_name == msg_name]
+        ros2_msg = [
+            m for m in ros2_msgs
+            if m.package_name == 'builtin_interfaces' and m.message_name == msg_name]
+        if ros1_msg and ros2_msg:
+            mappings.append(Mapping(ros1_msg[0], ros2_msg[0]))
+
     for ros1_msg, ros2_msg in message_pairs:
         mapping = determine_field_mapping(ros1_msg, ros2_msg, mapping_rules, rospack=rospack)
         if mapping:
@@ -220,12 +216,18 @@ def get_ros2_messages():
                 continue
             rule_file = os.path.join(package_path, export.attributes['mapping_rules'])
             with open(rule_file, 'r') as h:
-                for data in yaml.load(h):
-                    if all(n not in data for n in ('ros1_service_name', 'ros2_service_name')):
-                        try:
-                            rules.append(MessageMappingRule(data, package_name))
-                        except Exception as e:
-                            print('%s' % str(e), file=sys.stderr)
+                content = yaml.load(h)
+            if not isinstance(content, list):
+                print(
+                    "The content of the mapping rules in '%s' is not a list" % rule_file,
+                    file=sys.stderr)
+                continue
+            for data in content:
+                if all(n not in data for n in ('ros1_service_name', 'ros2_service_name')):
+                    try:
+                        rules.append(MessageMappingRule(data, package_name))
+                    except Exception as e:
+                        print('%s' % str(e), file=sys.stderr)
     return pkgs, msgs, rules
 
 
@@ -263,12 +265,18 @@ def get_ros2_services():
                 continue
             rule_file = os.path.join(package_path, export.attributes['mapping_rules'])
             with open(rule_file, 'r') as h:
-                for data in yaml.load(h):
-                    if all(n not in data for n in ('ros1_message_name', 'ros2_message_name')):
-                        try:
-                            rules.append(ServiceMappingRule(data, package_name))
-                        except Exception as e:
-                            print('%s' % str(e), file=sys.stderr)
+                content = yaml.load(h)
+            if not isinstance(content, list):
+                print(
+                    "The content of the mapping rules in '%s' is not a list" % rule_file,
+                    file=sys.stderr)
+                continue
+            for data in content:
+                if all(n not in data for n in ('ros1_message_name', 'ros2_message_name')):
+                    try:
+                        rules.append(ServiceMappingRule(data, package_name))
+                    except Exception as e:
+                        print('%s' % str(e), file=sys.stderr)
     return pkgs, srvs, rules
 
 
