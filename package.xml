@@ -37,21 +37,6 @@
 
   <group_depend>rosidl_interface_packages</group_depend>
 
-  <!-- Bundles useful msgs and srvs packages for binary release -->
-  <depend>actionlib_msgs</depend>
-  <depend>diagnostic_msgs</depend>
-  <depend>example_interfaces</depend>
-  <depend>geometry_msgs</depend>
-  <depend>nav_msgs</depend>
-  <depend>rosgraph_msgs</depend>
-  <depend>sensor_msgs</depend>
-  <depend>shape_msgs</depend>
-  <depend>std_srvs</depend>
-  <depend>stereo_msgs</depend>
-  <depend>tf2_msgs</depend>
-  <depend>trajectory_msgs</depend>
-  <depend>visualization_msgs</depend>
-
   <export>
     <build_type>ament_cmake</build_type>
   </export>
