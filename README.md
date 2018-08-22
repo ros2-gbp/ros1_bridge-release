@@ -1,3 +1,26 @@
+## ros1_bridge (bouncy) - 0.5.1-0
+
+The packages in the `ros1_bridge` repository were released into the `bouncy` distro by running `/usr/bin/bloom-release ros1_bridge -r bouncy -t bouncy` on `Wed, 22 Aug 2018 22:14:46 -0000`
+
+The `ros1_bridge` package was released.
+
+Version of package(s) in repository `ros1_bridge`:
+
+- upstream repository: https://github.com/ros2/ros1_bridge.git
+- release repository: https://github.com/ros2-gbp/ros1_bridge-release.git
+- rosdistro version: `0.5.0-1`
+- old version: `0.5.0-1`
+- new version: `0.5.1-0`
+
+Versions of tools used:
+
+- bloom version: `0.6.6`
+- catkin_pkg version: `0.4.8`
+- rosdep version: `0.12.2`
+- rosdistro version: `0.6.9`
+- vcstools version: `0.1.40`
+
+
 ## ros1_bridge (bouncy) - 0.5.0-1
 
 The packages in the `ros1_bridge` repository were released into the `bouncy` distro by running `/usr/bin/bloom-release ros1_bridge -r bouncy` on `Thu, 28 Jun 2018 00:55:46 -0000`
