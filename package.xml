@@ -2,7 +2,7 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>ros1_bridge</name>
-  <version>0.5.1</version>
+  <version>0.6.0</version>
   <description>A simple bridge between ROS 1 and ROS 2</description>
   <maintainer email="dthomas@osrfoundation.org">Dirk Thomas</maintainer>
   <license>Apache License 2.0</license>
@@ -36,21 +36,6 @@
   <test_depend>ros2run</test_depend>
 
   <group_depend>rosidl_interface_packages</group_depend>
-
-  <!-- Bundles useful msgs and srvs packages for binary release -->
-  <depend>actionlib_msgs</depend>
-  <depend>diagnostic_msgs</depend>
-  <depend>example_interfaces</depend>
-  <depend>geometry_msgs</depend>
-  <depend>nav_msgs</depend>
-  <depend>rosgraph_msgs</depend>
-  <depend>sensor_msgs</depend>
-  <depend>shape_msgs</depend>
-  <depend>std_srvs</depend>
-  <depend>stereo_msgs</depend>
-  <depend>tf2_msgs</depend>
-  <depend>trajectory_msgs</depend>
-  <depend>visualization_msgs</depend>
 
   <export>
     <build_type>ament_cmake</build_type>
