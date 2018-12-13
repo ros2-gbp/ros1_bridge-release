@@ -1,4 +1,4 @@
-From 489d2eb5bb8b08c2c19992db674b235058b72e76 Mon Sep 17 00:00:00 2001
+From df94a799508d024861823b79e5c95d08415cbad9 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Steven!=20Ragnar=C3=B6k?= <steven@nuclearsandwich.com>
 Date: Sat, 8 Dec 2018 13:14:20 -0800
 Subject: [PATCH] Bundle message packages for binary release.
