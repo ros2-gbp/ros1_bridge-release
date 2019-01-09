@@ -35,11 +35,13 @@
   <test_depend>launch</test_depend>
   <test_depend>ros2run</test_depend>
 
-    <!-- Bundles useful msgs and srvs packages for binary release -->
+  <!-- Bundles useful msgs and srvs packages for binary release -->
   <build_depend>actionlib_msgs</build_depend>
   <exec_depend>actionlib_msgs</exec_depend>
   <build_depend>diagnostic_msgs</build_depend>
   <exec_depend>diagnostic_msgs</exec_depend>
+  <build_depend>gazebo_msgs</build_depend>
+  <exec_depend>gazebo_msgs</exec_depend>
   <build_depend>geometry_msgs</build_depend>
   <exec_depend>geometry_msgs</exec_depend>
   <build_depend>nav_msgs</build_depend>
