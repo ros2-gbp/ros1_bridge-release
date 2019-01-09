@@ -1,0 +1,31 @@
+From f5d49b97031d476db315b5b905c458078c84bbd4 Mon Sep 17 00:00:00 2001
+From: Scott K Logan <logans@cottsay.net>
+Date: Wed, 9 Jan 2019 10:33:21 -0800
+Subject: [PATCH 2/2] Add dependency on gazebo_msgs
+
+---
+ package.xml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/package.xml b/package.xml
+index 331f741..deed2dc 100644
+--- a/package.xml
++++ b/package.xml
+@@ -35,11 +35,13 @@
+   <test_depend>launch</test_depend>
+   <test_depend>ros2run</test_depend>
+ 
+-    <!-- Bundles useful msgs and srvs packages for binary release -->
++  <!-- Bundles useful msgs and srvs packages for binary release -->
+   <build_depend>actionlib_msgs</build_depend>
+   <exec_depend>actionlib_msgs</exec_depend>
+   <build_depend>diagnostic_msgs</build_depend>
+   <exec_depend>diagnostic_msgs</exec_depend>
++  <build_depend>gazebo_msgs</build_depend>
++  <exec_depend>gazebo_msgs</exec_depend>
+   <build_depend>geometry_msgs</build_depend>
+   <exec_depend>geometry_msgs</exec_depend>
+   <build_depend>nav_msgs</build_depend>
+-- 
+2.20.1
+
