@@ -1,3 +1,26 @@
+## ros1_bridge (crystal) - 0.6.2-0
+
+The packages in the `ros1_bridge` repository were released into the `crystal` distro by running `/usr/bin/bloom-release -r crystal ros1_bridge --override-release-repository-push-url git@github.com:ros2-gbp/ros1_bridge-release` on `Tue, 12 Mar 2019 17:42:14 -0000`
+
+The `ros1_bridge` package was released.
+
+Version of package(s) in repository `ros1_bridge`:
+
+- upstream repository: https://github.com/ros2/ros1_bridge.git
+- release repository: https://github.com/ros2-gbp/ros1_bridge-release.git
+- rosdistro version: `0.6.1-1`
+- old version: `0.6.1-1`
+- new version: `0.6.2-0`
+
+Versions of tools used:
+
+- bloom version: `0.7.2`
+- catkin_pkg version: `0.4.10`
+- rosdep version: `0.15.0`
+- rosdistro version: `0.7.2`
+- vcstools version: `0.1.40`
+
+
 ## ros1_bridge (crystal) - 0.6.1-1
 
 The packages in the `ros1_bridge` repository were released into the `crystal` distro by running `/usr/bin/git-bloom-release crystal --release-increment 1` on `Wed, 09 Jan 2019 18:33:21 -0000`
