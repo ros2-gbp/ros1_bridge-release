@@ -1,4 +1,4 @@
-From f5d49b97031d476db315b5b905c458078c84bbd4 Mon Sep 17 00:00:00 2001
+From 689127a7e905bfd794e1c98f83d6c830b5fa33a5 Mon Sep 17 00:00:00 2001
 From: Scott K Logan <logans@cottsay.net>
 Date: Wed, 9 Jan 2019 10:33:21 -0800
 Subject: [PATCH 2/2] Add dependency on gazebo_msgs
@@ -27,5 +27,5 @@ index 331f741..deed2dc 100644
    <exec_depend>geometry_msgs</exec_depend>
    <build_depend>nav_msgs</build_depend>
 -- 
-2.20.1
+2.7.4
 
