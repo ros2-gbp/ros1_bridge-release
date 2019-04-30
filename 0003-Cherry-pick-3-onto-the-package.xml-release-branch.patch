@@ -1,0 +1,27 @@
+From 78c7f954939d7d43ef990e48b742a0f994ac283a Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Steven!=20Ragnar=C3=B6k?= <steven@nuclearsandwich.com>
+Date: Tue, 30 Apr 2019 13:58:02 -0400
+Subject: [PATCH 3/3] Cherry-pick #3 onto the package.xml release branch.
+
+The change in #3 added the dependency to the overlaid package.xml which
+is no longer used for Crystal.
+---
+ package.xml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/package.xml b/package.xml
+index 576be4d..95d13ea 100644
+--- a/package.xml
++++ b/package.xml
+@@ -42,6 +42,8 @@
+   <exec_depend>actionlib_msgs</exec_depend>
+   <build_depend>diagnostic_msgs</build_depend>
+   <exec_depend>diagnostic_msgs</exec_depend>
++  <build_depend>example_interfaces</build_depend>
++  <exec_depend>example_interfaces</exec_depend>
+   <build_depend>gazebo_msgs</build_depend>
+   <exec_depend>gazebo_msgs</exec_depend>
+   <build_depend>geometry_msgs</build_depend>
+-- 
+2.7.4
+
