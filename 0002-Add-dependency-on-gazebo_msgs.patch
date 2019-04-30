@@ -1,4 +1,4 @@
-From 938feb8b126baf8d5130a82fccdef38b480d1a83 Mon Sep 17 00:00:00 2001
+From 2b442f2fdc7af657d71cec3fac04e602c789b4eb Mon Sep 17 00:00:00 2001
 From: Scott K Logan <logans@cottsay.net>
 Date: Wed, 9 Jan 2019 10:34:08 -0800
 Subject: [PATCH 2/2] Add dependency on gazebo_msgs
@@ -28,5 +28,5 @@ index e8bcc8c..1a197af 100644
  @[if Replaces]Replaces: @(', '.join(Replaces))@\n@[end if]@
  Description: @(Description)
 -- 
-2.7.4
+2.17.1
 
