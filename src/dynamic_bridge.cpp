@@ -41,12 +41,6 @@
 
 std::mutex g_bridge_mutex;
 
-namespace ros1_bridge
-{
-std::unique_ptr<ros1_bridge::ServiceFactoryInterface>
-get_service_factory(const std::string &, const std::string &, const std::string &);
-}
-
 struct Bridge1to2HandlesAndMessageTypes
 {
   ros1_bridge::Bridge1to2Handles bridge_handles;
@@ -461,13 +455,13 @@ int main(int argc, char * argv[])
     return 0;
   }
 
-  // ROS 1 node
-  ros::init(argc, argv, "ros_bridge");
-  ros::NodeHandle ros1_node;
-
   // ROS 2 node
   rclcpp::init(argc, argv);
   auto ros2_node = rclcpp::Node::make_shared("ros_bridge");
+
+  // ROS 1 node
+  ros::init(argc, argv, "ros_bridge");
+  ros::NodeHandle ros1_node;
 
   // mapping of available topic names to type names
   std::map<std::string, std::string> ros1_publishers;

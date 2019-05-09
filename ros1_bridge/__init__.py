@@ -23,8 +23,8 @@ from catkin_pkg.package import parse_package
 import genmsg
 import genmsg.msg_loader
 
+import rosidl_adapter.parser
 from rosidl_cmake import expand_template
-import rosidl_parser
 
 import yaml
 
@@ -85,29 +85,67 @@ def generate_cpp(output_path, template_dir):
     expand_template(template_file, data, output_file)
 
     for ros2_package_name in data['ros2_package_names']:
-        for extension in ['cpp', 'hpp']:
-            data_pkg = {
-                'ros2_package_name': ros2_package_name,
-                'mappings': [
-                    m for m in data['mappings']
-                    if m.ros2_msg.package_name == ros2_package_name],
-                'services': [
-                    s for s in data['services']
-                    if s['ros2_package'] == ros2_package_name]
-            }
-            if extension == 'hpp':
-                data_pkg.update({
-                    'ros1_msgs': [
-                        m.ros1_msg for m in data['mappings']
-                        if m.ros2_msg.package_name == ros2_package_name],
-                    'ros2_msgs': [
-                        m.ros2_msg for m in data['mappings']
-                        if m.ros2_msg.package_name == ros2_package_name],
-                })
-            template_file = os.path.join(template_dir, 'pkg_factories.%s.em' % extension)
-            output_file = os.path.join(
-                output_path, '%s_factories.%s' % (ros2_package_name, extension))
-            expand_template(template_file, data_pkg, output_file)
+        data_pkg_hpp = {
+            'ros2_package_name': ros2_package_name,
+            # include directives and template types
+            'mapped_ros1_msgs': [
+                m.ros1_msg for m in data['mappings']
+                if m.ros2_msg.package_name == ros2_package_name],
+            'mapped_ros2_msgs': [
+                m.ros2_msg for m in data['mappings']
+                if m.ros2_msg.package_name == ros2_package_name],
+            # forward declaration of factory functions
+            'ros2_msg_types': [
+                m for m in data['all_ros2_msgs']
+                if m.package_name == ros2_package_name],
+            'ros2_srv_types': [
+                s for s in data['all_ros2_srvs']
+                if s.package_name == ros2_package_name],
+            # forward declaration of template specializations
+            'mappings': [
+                m for m in data['mappings']
+                if m.ros2_msg.package_name == ros2_package_name],
+        }
+        template_file = os.path.join(template_dir, 'pkg_factories.hpp.em')
+        output_file = os.path.join(
+            output_path, '%s_factories.hpp' % ros2_package_name)
+        expand_template(template_file, data_pkg_hpp, output_file)
+
+        data_pkg_cpp = {
+            'ros2_package_name': ros2_package_name,
+            # call interface specific factory functions
+            'ros2_msg_types': data_pkg_hpp['ros2_msg_types'],
+            'ros2_srv_types': data_pkg_hpp['ros2_srv_types'],
+        }
+        template_file = os.path.join(template_dir, 'pkg_factories.cpp.em')
+        output_file = os.path.join(
+            output_path, '%s_factories.cpp' % ros2_package_name)
+        expand_template(template_file, data_pkg_cpp, output_file)
+
+        for interface_type, interfaces in zip(
+            ['msg', 'srv'], [data['all_ros2_msgs'], data['all_ros2_srvs']]
+        ):
+            for interface in interfaces:
+                if interface.package_name != ros2_package_name:
+                    continue
+                data_idl_cpp = {
+                    'ros2_package_name': ros2_package_name,
+                    'interface_type': interface_type,
+                    'interface': interface,
+                    'mapped_msgs': [
+                        m for m in data['mappings']
+                        if m.ros2_msg.package_name == ros2_package_name and
+                        m.ros2_msg.message_name == interface.message_name],
+                    'mapped_services': [
+                        s for s in data['services']
+                        if s['ros2_package'] == ros2_package_name and
+                        s['ros2_name'] == interface.message_name],
+                }
+                template_file = os.path.join(template_dir, 'interface_factories.cpp.em')
+                output_file = os.path.join(
+                    output_path, '%s__%s__%s__factories.cpp' %
+                    (ros2_package_name, interface_type, interface.message_name))
+                expand_template(template_file, data_idl_cpp, output_file)
 
 
 def generate_messages(rospack=None):
@@ -167,7 +205,8 @@ def generate_messages(rospack=None):
         'ros1_msgs': [m.ros1_msg for m in ordered_mappings],
         'ros2_msgs': [m.ros2_msg for m in ordered_mappings],
         'mappings': ordered_mappings,
-        'ros2_package_names_msg': ros2_package_names
+        'ros2_package_names_msg': ros2_package_names,
+        'all_ros2_msgs': ros2_msgs,
     }
 
 
@@ -177,7 +216,8 @@ def generate_services(rospack=None):
     services = determine_common_services(ros1_srvs, ros2_srvs, mapping_rules)
     return {
         'services': services,
-        'ros2_package_names_srv': ros2_pkgs
+        'ros2_package_names_srv': ros2_pkgs,
+        'all_ros2_srvs': ros2_srvs,
     }
 
 
@@ -220,7 +260,7 @@ def get_ros2_messages():
                 continue
             rule_file = os.path.join(package_path, export.attributes['mapping_rules'])
             with open(rule_file, 'r') as h:
-                content = yaml.load(h)
+                content = yaml.safe_load(h)
             if not isinstance(content, list):
                 print(
                     "The content of the mapping rules in '%s' is not a list" % rule_file,
@@ -273,7 +313,7 @@ def get_ros2_services():
                 continue
             rule_file = os.path.join(package_path, export.attributes['mapping_rules'])
             with open(rule_file, 'r') as h:
-                content = yaml.load(h)
+                content = yaml.safe_load(h)
             if not isinstance(content, list):
                 print(
                     "The content of the mapping rules in '%s' is not a list" % rule_file,
@@ -683,8 +723,8 @@ def load_ros2_message(ros2_msg):
         ros2_msg.prefix_path, 'share', ros2_msg.package_name, 'msg',
         ros2_msg.message_name + '.msg')
     try:
-        spec = rosidl_parser.parse_message_file(ros2_msg.package_name, message_path)
-    except rosidl_parser.InvalidSpecification:
+        spec = rosidl_adapter.parser.parse_message_file(ros2_msg.package_name, message_path)
+    except rosidl_adapter.parser.InvalidSpecification:
         return None
     return spec
 
@@ -694,8 +734,8 @@ def load_ros2_service(ros2_srv):
         ros2_srv.prefix_path, 'share', ros2_srv.package_name, 'srv',
         ros2_srv.message_name + '.srv')
     try:
-        spec = rosidl_parser.parse_service_file(ros2_srv.package_name, srv_path)
-    except rosidl_parser.InvalidSpecification:
+        spec = rosidl_adapter.parser.parse_service_file(ros2_srv.package_name, srv_path)
+    except rosidl_adapter.parser.InvalidSpecification:
         return None
     return spec
 
@@ -706,7 +746,7 @@ def FieldHash(self):
 
 
 genmsg.msgs.Field.__hash__ = FieldHash
-rosidl_parser.Field.__hash__ = FieldHash
+rosidl_adapter.parser.Field.__hash__ = FieldHash
 
 
 class Mapping:
