@@ -1,3 +1,26 @@
+## ros1_bridge (dashing) - 0.7.2-3
+
+The packages in the `ros1_bridge` repository were released into the `dashing` distro by running `/usr/bin/bloom-release -r dashing ros1_bridge --override-release-repository-push-url git@github.com:ros2-gbp/ros1_bridge-release` on `Fri, 07 Jun 2019 01:21:40 -0000`
+
+The `ros1_bridge` package was released.
+
+Version of package(s) in repository `ros1_bridge`:
+
+- upstream repository: https://github.com/ros2/ros1_bridge.git
+- release repository: https://github.com/ros2-gbp/ros1_bridge-release.git
+- rosdistro version: `0.7.2-2`
+- old version: `0.7.2-2`
+- new version: `0.7.2-3`
+
+Versions of tools used:
+
+- bloom version: `0.8.0`
+- catkin_pkg version: `0.4.11`
+- rosdep version: `0.15.1`
+- rosdistro version: `0.7.3`
+- vcstools version: `0.1.40`
+
+
 ## ros1_bridge (dashing) - 0.7.2-2
 
 The packages in the `ros1_bridge` repository were released into the `dashing` distro by running `/usr/bin/bloom-release -r dashing ros1_bridge --override-release-repository-push-url git@github.com:ros2-gbp/ros1_bridge-release` on `Wed, 05 Jun 2019 17:45:26 -0000`
