@@ -1,3 +1,26 @@
+## ros1_bridge (eloquent) - 0.8.1-1
+
+The packages in the `ros1_bridge` repository were released into the `eloquent` distro by running `/usr/bin/bloom-release --rosdistro eloquent ros1_bridge` on `Thu, 24 Oct 2019 03:39:14 -0000`
+
+The `ros1_bridge` package was released.
+
+Version of package(s) in repository `ros1_bridge`:
+
+- upstream repository: https://github.com/ros2/ros1_bridge.git
+- release repository: https://github.com/ros2-gbp/ros1_bridge-release.git
+- rosdistro version: `0.8.0-2`
+- old version: `0.8.0-2`
+- new version: `0.8.1-1`
+
+Versions of tools used:
+
+- bloom version: `0.9.0`
+- catkin_pkg version: `0.4.14`
+- rosdep version: `0.17.1`
+- rosdistro version: `0.7.5`
+- vcstools version: `0.1.42`
+
+
 ## ros1_bridge (eloquent) - 0.8.0-2
 
 The packages in the `ros1_bridge` repository were released into the `eloquent` distro by running `/usr/bin/bloom-release --rosdistro eloquent ros1_bridge` on `Thu, 03 Oct 2019 08:58:06 -0000`
