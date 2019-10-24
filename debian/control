@@ -1,0 +1,13 @@
+Source: ros-eloquent-ros1-bridge
+Section: misc
+Priority: optional
+Maintainer: Dirk Thomas <dthomas@osrfoundation.org>
+Build-Depends: debhelper (>= 9.0.0), python-rospkg, ros-melodic-actionlib-msgs, ros-melodic-catkin, ros-melodic-common-msgs, ros-melodic-gazebo-msgs, ros-melodic-geometry-msgs, ros-melodic-nav-msgs, ros-melodic-rosbash, ros-melodic-roscpp, ros-melodic-roscpp-tutorials, ros-melodic-roslaunch, ros-melodic-rosmsg, ros-melodic-rospy-tutorials, ros-melodic-sensor-msgs, ros-melodic-std-msgs, ros-melodic-std-srvs, ros-melodic-stereo-msgs, ros-melodic-tf2-msgs, ros-melodic-trajectory-msgs, ros-melodic-visualization-msgs, pkg-config, python3-catkin-pkg-modules, python3-yaml, ros-eloquent-ament-cmake, ros-eloquent-ament-index-python, ros-eloquent-ament-lint-auto, ros-eloquent-ament-lint-common, ros-eloquent-builtin-interfaces, ros-eloquent-demo-nodes-cpp, ros-eloquent-diagnostic-msgs, ros-eloquent-launch, ros-eloquent-launch-testing, ros-eloquent-launch-testing-ament-cmake, ros-eloquent-launch-testing-ros, ros-eloquent-rclcpp, ros-eloquent-rcutils, ros-eloquent-rmw-implementation-cmake, ros-eloquent-ros2run, ros-eloquent-rosidl-cmake, ros-eloquent-rosidl-parser, ros-eloquent-std-msgs, ros-eloquent-ros-workspace
+
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-eloquent-ros1-bridge
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python-rospkg, ros-melodic-actionlib-msgs, ros-melodic-catkin, ros-melodic-common-msgs, ros-melodic-gazebo-msgs, ros-melodic-geometry-msgs, ros-melodic-nav-msgs, ros-melodic-rosbash, ros-melodic-roscpp, ros-melodic-roscpp-tutorials, ros-melodic-roslaunch, ros-melodic-rosmsg, ros-melodic-rospy-tutorials, ros-melodic-sensor-msgs, ros-melodic-std-msgs, ros-melodic-std-srvs, ros-melodic-stereo-msgs, ros-melodic-tf2-msgs, ros-melodic-trajectory-msgs, ros-melodic-visualization-msgs, pkg-config, python3-yaml, ros-eloquent-builtin-interfaces, ros-eloquent-rclcpp, ros-eloquent-rcutils, ros-eloquent-std-msgs, ros-eloquent-ros-workspace
+Description: A simple bridge between ROS 1 and ROS 2
