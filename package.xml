@@ -44,6 +44,10 @@
   <exec_depend>action_msgs</exec_depend>
   <build_depend>actionlib_msgs</build_depend>
   <exec_depend>actionlib_msgs</exec_depend>
+  <build_depend>demo_nodes_cpp</build_depend>
+  <exec_depend>demo_nodes_cpp</exec_depend>
+  <build_depend>demo_nodes_py</build_depend>
+  <exec_depend>demo_nodes_py</exec_depend>
   <build_depend>diagnostic_msgs</build_depend>
   <exec_depend>diagnostic_msgs</exec_depend>
   <build_depend>example_interfaces</build_depend>
