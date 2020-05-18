@@ -26,6 +26,7 @@ override_dh_auto_configure:
 	# in the install tree and source it.  It will set things like
 	# CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
+	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
 	dh_auto_configure -- \
 		-DCMAKE_INSTALL_PREFIX="@(InstallationPrefix)" \
 		-DAMENT_PREFIX_PATH="@(InstallationPrefix)"
@@ -35,6 +36,7 @@ override_dh_auto_build:
 	# in the install tree and source it.  It will set things like
 	# CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
+	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
 	dh_auto_build
 
 override_dh_auto_test:
@@ -42,7 +44,9 @@ override_dh_auto_test:
 	# in the install tree and source it.  It will set things like
 	# CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
 	echo -- Running tests. Even if one of them fails the build is not canceled.
+	if [ -f "/opt/ros/noetic/setup.sh" ]; then . "/opt/ros/noetic/setup.sh"; fi && \
 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
+	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
 	dh_auto_test || true
 
 override_dh_shlibdeps:
@@ -50,6 +54,7 @@ override_dh_shlibdeps:
 	# in the install tree and source it.  It will set things like
 	# CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
+	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
 	dh_shlibdeps -l$(CURDIR)/debian/@(Package)/@(InstallationPrefix)/lib/
 
 override_dh_auto_install:
@@ -57,4 +62,5 @@ override_dh_auto_install:
 	# in the install tree and source it.  It will set things like
 	# CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
+	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
 	dh_auto_install
