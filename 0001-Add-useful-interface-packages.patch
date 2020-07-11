@@ -1,4 +1,4 @@
-From afd78dfe64627c2bcd3da9b80a9266a1efd18db3 Mon Sep 17 00:00:00 2001
+From 52ad98e2e3290ce2ef4361f502cfa7eff8076a90 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Steven!=20Ragnar=C3=B6k?= <steven@nuclearsandwich.com>
 Date: Thu, 6 Jun 2019 18:20:23 -0700
 Subject: [PATCH] Add useful interface packages.
@@ -10,7 +10,7 @@ binary releases.
  1 file changed, 30 insertions(+)
 
 diff --git a/package.xml b/package.xml
-index 09fa256..a69778c 100644
+index a7df912..9bfe439 100644
 --- a/package.xml
 +++ b/package.xml
 @@ -39,6 +39,36 @@
@@ -51,5 +51,5 @@ index 09fa256..a69778c 100644
  
    <export>
 -- 
-2.25.1
+2.27.0
 
