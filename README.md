@@ -107,7 +107,7 @@ You will get errors from most tools if they have both workspaces in their enviro
 First we start a ROS 1 `roscore`:
 
 ```
-# Shell A:
+# Shell A (ROS 1 only):
 . /opt/ros/melodic/setup.bash
 # Or, on OSX, something like:
 # . ~/ros_catkin_ws/install_isolated/setup.bash
@@ -120,11 +120,15 @@ Then we start the dynamic bridge which will watch the available ROS 1 and ROS 2 
 Once a *matching* topic has been detected it starts to bridge the messages on this topic.
 
 ```
-# Shell B:
+# Shell B (ROS 1 + ROS 2):
+# Source ROS 1 first:
 . /opt/ros/melodic/setup.bash
 # Or, on OSX, something like:
 # . ~/ros_catkin_ws/install_isolated/setup.bash
+# Source ROS 2 next:
 . <install-space-with-bridge>/setup.bash
+# For example:
+# . /opt/ros/dashing/setup.bash
 export ROS_MASTER_URI=http://localhost:11311
 ros2 run ros1_bridge dynamic_bridge
 ```
@@ -169,9 +173,6 @@ Once you stop either the talker or the listener in *shell B* a line will be stat
 ```
 removed 1to2 bridge for topic '/chatter'
 ```
-
-*Note:* When the bridge is run using the default ROS 2 middleware implementation, which uses Fast RTPS, it does not always remove bridges instantly.
-See [https://github.com/ros2/ros1_bridge/issues/38](https://github.com/ros2/ros1_bridge/issues/38).
 
 The screenshot shows all the shell windows and their expected content:
 
