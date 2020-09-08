@@ -1,7 +1,7 @@
-From 3ea7972126fc0502d9f24add015b5f1cf779c3ef Mon Sep 17 00:00:00 2001
+From c816626c10561ae77ee4ec4fcb9b59c5dd5285b0 Mon Sep 17 00:00:00 2001
 From: Michael Carroll <michael@openrobotics.org>
 Date: Mon, 1 Jun 2020 11:27:33 -0500
-Subject: [PATCH 3/4] add dependency on ros-noetic-tf (#10) (#11)
+Subject: [PATCH 3/3] add dependency on ros-noetic-tf (#10) (#11)
 
 To allow bridging tf/tfMessage out of the box
 
