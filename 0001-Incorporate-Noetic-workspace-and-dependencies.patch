@@ -1,0 +1,80 @@
+From b8aecf009c67803cab7173a9863063b5dc9c21b4 Mon Sep 17 00:00:00 2001
+From: Jacob Perron <jacob@openrobotics.org>
+Date: Mon, 18 May 2020 10:58:45 -0700
+Subject: [PATCH 1/4] Incorporate Noetic workspace and dependencies
+
+Copied patch from Eloquent, but swapped 'melodic' for 'noetic'
+
+Signed-off-by: Jacob Perron <jacob@openrobotics.org>
+---
+ debian/control.em | 4 ++--
+ debian/rules.em   | 6 ++++++
+ 2 files changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/debian/control.em b/debian/control.em
+index 6d7b65c..c89dfa9 100644
+--- a/debian/control.em
++++ b/debian/control.em
+@@ -2,13 +2,13 @@ Source: @(Package)
+ Section: misc
+ Priority: optional
+ Maintainer: @(Maintainer)
+-Build-Depends: debhelper (>= @(debhelper_version).0.0), @(', '.join(BuildDepends))
++Build-Depends: debhelper (>= @(debhelper_version).0.0), python-rospkg, ros-noetic-actionlib-msgs, ros-noetic-catkin, ros-noetic-common-msgs, ros-noetic-gazebo-msgs, ros-noetic-geometry-msgs, ros-noetic-nav-msgs, ros-noetic-rosbash, ros-noetic-roscpp, ros-noetic-roscpp-tutorials, ros-noetic-roslaunch, ros-noetic-rosmsg, ros-noetic-rospy-tutorials, ros-noetic-sensor-msgs, ros-noetic-std-msgs, ros-noetic-std-srvs, ros-noetic-stereo-msgs, ros-noetic-tf2-msgs, ros-noetic-trajectory-msgs, ros-noetic-visualization-msgs, @(', '.join(BuildDepends))
+ Homepage: @(Homepage)
+ Standards-Version: 3.9.2
+ 
+ Package: @(Package)
+ Architecture: any
+-Depends: ${shlibs:Depends}, ${misc:Depends}, @(', '.join(Depends))
++Depends: ${shlibs:Depends}, ${misc:Depends}, python-rospkg, ros-noetic-actionlib-msgs, ros-noetic-catkin, ros-noetic-common-msgs, ros-noetic-gazebo-msgs, ros-noetic-geometry-msgs, ros-noetic-nav-msgs, ros-noetic-rosbash, ros-noetic-roscpp, ros-noetic-roscpp-tutorials, ros-noetic-roslaunch, ros-noetic-rosmsg, ros-noetic-rospy-tutorials, ros-noetic-sensor-msgs, ros-noetic-std-msgs, ros-noetic-std-srvs, ros-noetic-stereo-msgs, ros-noetic-tf2-msgs, ros-noetic-trajectory-msgs, ros-noetic-visualization-msgs, @(', '.join(Depends))
+ @[if Conflicts]Conflicts: @(', '.join(Conflicts))@\n@[end if]@
+ @[if Replaces]Replaces: @(', '.join(Replaces))@\n@[end if]@
+ Description: @(Description)
+diff --git a/debian/rules.em b/debian/rules.em
+index eb57e64..026d5db 100755
+--- a/debian/rules.em
++++ b/debian/rules.em
+@@ -26,6 +26,7 @@ override_dh_auto_configure:
+ 	# in the install tree and source it.  It will set things like
+ 	# CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
+ 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
++	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
+ 	dh_auto_configure -- \
+ 		-DCMAKE_INSTALL_PREFIX="@(InstallationPrefix)" \
+ 		-DAMENT_PREFIX_PATH="@(InstallationPrefix)"
+@@ -35,6 +36,7 @@ override_dh_auto_build:
+ 	# in the install tree and source it.  It will set things like
+ 	# CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
+ 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
++	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
+ 	dh_auto_build
+ 
+ override_dh_auto_test:
+@@ -42,7 +44,9 @@ override_dh_auto_test:
+ 	# in the install tree and source it.  It will set things like
+ 	# CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
+ 	echo -- Running tests. Even if one of them fails the build is not canceled.
++	if [ -f "/opt/ros/noetic/setup.sh" ]; then . "/opt/ros/noetic/setup.sh"; fi && \
+ 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
++	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
+ 	dh_auto_test || true
+ 
+ override_dh_shlibdeps:
+@@ -50,6 +54,7 @@ override_dh_shlibdeps:
+ 	# in the install tree and source it.  It will set things like
+ 	# CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
+ 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
++	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
+ 	dh_shlibdeps -l$(CURDIR)/debian/@(Package)/@(InstallationPrefix)/lib/
+ 
+ override_dh_auto_install:
+@@ -57,4 +62,5 @@ override_dh_auto_install:
+ 	# in the install tree and source it.  It will set things like
+ 	# CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
+ 	if [ -f "@(InstallationPrefix)/setup.sh" ]; then . "@(InstallationPrefix)/setup.sh"; fi && \
++	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
+ 	dh_auto_install
+-- 
+2.25.1
+

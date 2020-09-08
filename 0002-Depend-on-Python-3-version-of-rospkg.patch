@@ -1,0 +1,48 @@
+From 80e75c8953444a2cae0ec9345362575925f5199f Mon Sep 17 00:00:00 2001
+From: Jacob Perron <jacob@openrobotics.org>
+Date: Mon, 18 May 2020 11:44:43 -0700
+Subject: [PATCH 2/4] Depend on Python 3 version of rospkg
+
+Signed-off-by: Jacob Perron <jacob@openrobotics.org>
+---
+ debian/control.em | 28 ++++++++++++++--------------
+ 1 file changed, 14 insertions(+), 14 deletions(-)
+ rewrite debian/control.em (77%)
+
+diff --git a/debian/control.em b/debian/control.em
+dissimilarity index 77%
+index c89dfa9..584048f 100644
+--- a/debian/control.em
++++ b/debian/control.em
+@@ -1,14 +1,14 @@
+-Source: @(Package)
+-Section: misc
+-Priority: optional
+-Maintainer: @(Maintainer)
+-Build-Depends: debhelper (>= @(debhelper_version).0.0), python-rospkg, ros-noetic-actionlib-msgs, ros-noetic-catkin, ros-noetic-common-msgs, ros-noetic-gazebo-msgs, ros-noetic-geometry-msgs, ros-noetic-nav-msgs, ros-noetic-rosbash, ros-noetic-roscpp, ros-noetic-roscpp-tutorials, ros-noetic-roslaunch, ros-noetic-rosmsg, ros-noetic-rospy-tutorials, ros-noetic-sensor-msgs, ros-noetic-std-msgs, ros-noetic-std-srvs, ros-noetic-stereo-msgs, ros-noetic-tf2-msgs, ros-noetic-trajectory-msgs, ros-noetic-visualization-msgs, @(', '.join(BuildDepends))
+-Homepage: @(Homepage)
+-Standards-Version: 3.9.2
+-
+-Package: @(Package)
+-Architecture: any
+-Depends: ${shlibs:Depends}, ${misc:Depends}, python-rospkg, ros-noetic-actionlib-msgs, ros-noetic-catkin, ros-noetic-common-msgs, ros-noetic-gazebo-msgs, ros-noetic-geometry-msgs, ros-noetic-nav-msgs, ros-noetic-rosbash, ros-noetic-roscpp, ros-noetic-roscpp-tutorials, ros-noetic-roslaunch, ros-noetic-rosmsg, ros-noetic-rospy-tutorials, ros-noetic-sensor-msgs, ros-noetic-std-msgs, ros-noetic-std-srvs, ros-noetic-stereo-msgs, ros-noetic-tf2-msgs, ros-noetic-trajectory-msgs, ros-noetic-visualization-msgs, @(', '.join(Depends))
+-@[if Conflicts]Conflicts: @(', '.join(Conflicts))@\n@[end if]@
+-@[if Replaces]Replaces: @(', '.join(Replaces))@\n@[end if]@
+-Description: @(Description)
++Source: @(Package)
++Section: misc
++Priority: optional
++Maintainer: @(Maintainer)
++Build-Depends: debhelper (>= @(debhelper_version).0.0), python3-rospkg, ros-noetic-actionlib-msgs, ros-noetic-catkin, ros-noetic-common-msgs, ros-noetic-gazebo-msgs, ros-noetic-geometry-msgs, ros-noetic-nav-msgs, ros-noetic-rosbash, ros-noetic-roscpp, ros-noetic-roscpp-tutorials, ros-noetic-roslaunch, ros-noetic-rosmsg, ros-noetic-rospy-tutorials, ros-noetic-sensor-msgs, ros-noetic-std-msgs, ros-noetic-std-srvs, ros-noetic-stereo-msgs, ros-noetic-tf2-msgs, ros-noetic-trajectory-msgs, ros-noetic-visualization-msgs, @(', '.join(BuildDepends))
++Homepage: @(Homepage)
++Standards-Version: 3.9.2
++
++Package: @(Package)
++Architecture: any
++Depends: ${shlibs:Depends}, ${misc:Depends}, python3-rospkg, ros-noetic-actionlib-msgs, ros-noetic-catkin, ros-noetic-common-msgs, ros-noetic-gazebo-msgs, ros-noetic-geometry-msgs, ros-noetic-nav-msgs, ros-noetic-rosbash, ros-noetic-roscpp, ros-noetic-roscpp-tutorials, ros-noetic-roslaunch, ros-noetic-rosmsg, ros-noetic-rospy-tutorials, ros-noetic-sensor-msgs, ros-noetic-std-msgs, ros-noetic-std-srvs, ros-noetic-stereo-msgs, ros-noetic-tf2-msgs, ros-noetic-trajectory-msgs, ros-noetic-visualization-msgs, @(', '.join(Depends))
++@[if Conflicts]Conflicts: @(', '.join(Conflicts))@\n@[end if]@
++@[if Replaces]Replaces: @(', '.join(Replaces))@\n@[end if]@
++Description: @(Description)
+-- 
+2.25.1
+
