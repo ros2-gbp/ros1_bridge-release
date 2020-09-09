@@ -1,4 +1,4 @@
-From 2fd164243d00ddee1c5365931a370effe7c053c4 Mon Sep 17 00:00:00 2001
+From 8cd494fd1e85e0b7315222f5924bc1c114072969 Mon Sep 17 00:00:00 2001
 From: ldemk <38504999+ldemk@users.noreply.github.com>
 Date: Fri, 28 Aug 2020 23:41:00 +0300
 Subject: [PATCH] Add gazebo_msgs dependency to package.xml (#15)
