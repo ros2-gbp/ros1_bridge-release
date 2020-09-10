@@ -58,10 +58,10 @@ get_2to1_mapping(
   const std::string & ros2_type_name,
   std::string & ros1_type_name);
 
-std::multimap<std::string, std::string>
+std::map<std::string, std::string>
 get_all_message_mappings_2to1();
 
-std::multimap<std::string, std::string>
+std::map<std::string, std::string>
 get_all_service_mappings_2to1();
 
 std::shared_ptr<FactoryInterface>
