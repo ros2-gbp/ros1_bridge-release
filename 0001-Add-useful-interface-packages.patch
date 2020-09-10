@@ -1,4 +1,4 @@
-From 210ce7b43c3836268387ec0a9a7f98bb2dfb1346 Mon Sep 17 00:00:00 2001
+From a7a701d07bcadaf699fe14d212da944121e4a4f7 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Steven!=20Ragnar=C3=B6k?= <steven@nuclearsandwich.com>
 Date: Thu, 6 Jun 2019 18:20:23 -0700
 Subject: [PATCH] Add useful interface packages.
@@ -12,7 +12,7 @@ Signed-off-by: Mikael Arguedas <mikael.arguedas@gmail.com>
  1 file changed, 30 insertions(+)
 
 diff --git a/package.xml b/package.xml
-index cf2d725..a7a4f5f 100644
+index c6f27a3..0a1d816 100644
 --- a/package.xml
 +++ b/package.xml
 @@ -39,6 +39,36 @@
@@ -53,5 +53,5 @@ index cf2d725..a7a4f5f 100644
  
    <export>
 -- 
-2.17.1
+2.25.1
 
