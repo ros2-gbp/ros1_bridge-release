@@ -1,8 +1,9 @@
-From d72b86dad926de66048653b3285602fb1d0df316 Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Steven!=20Ragnar=C3=B6k?= <steven@nuclearsandwich.com>
-Date: Wed, 27 Jun 2018 17:53:54 -0700
+From 865391ddd3e28fc7d74657d75914b31016f5d0bc Mon Sep 17 00:00:00 2001
+From: William Woodall <william@osrfoundation.org>
+Date: Tue, 24 Nov 2020 14:47:39 -0600
 Subject: [PATCH] Incorporate melodic workspace and dependencies.
 
+Signed-off-by: William Woodall <william@osrfoundation.org>
 ---
  debian/control.em |  4 ++--
  debian/rules.em   | 10 ++++++++++
@@ -29,7 +30,7 @@ index 6d7b65c..6343494 100644
  @[if Replaces]Replaces: @(', '.join(Replaces))@\n@[end if]@
  Description: @(Description)
 diff --git a/debian/rules.em b/debian/rules.em
-index eb57e64..4fdd22d 100755
+index 5a04067..78bd829 100755
 --- a/debian/rules.em
 +++ b/debian/rules.em
 @@ -25,7 +25,9 @@ override_dh_auto_configure:
@@ -41,8 +42,8 @@ index eb57e64..4fdd22d 100755
 +	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
  	dh_auto_configure -- \
  		-DCMAKE_INSTALL_PREFIX="@(InstallationPrefix)" \
- 		-DAMENT_PREFIX_PATH="@(InstallationPrefix)"
-@@ -34,7 +36,9 @@ override_dh_auto_build:
+ 		-DAMENT_PREFIX_PATH="@(InstallationPrefix)" \
+@@ -35,7 +37,9 @@ override_dh_auto_build:
  	# In case we're installing to a non-standard location, look for a setup.sh
  	# in the install tree and source it.  It will set things like
  	# CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
@@ -52,7 +53,7 @@ index eb57e64..4fdd22d 100755
  	dh_auto_build
  
  override_dh_auto_test:
-@@ -42,19 +46,25 @@ override_dh_auto_test:
+@@ -43,19 +47,25 @@ override_dh_auto_test:
  	# in the install tree and source it.  It will set things like
  	# CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
  	echo -- Running tests. Even if one of them fails the build is not canceled.
