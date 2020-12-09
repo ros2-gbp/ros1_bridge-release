@@ -1,4 +1,4 @@
-From a5407b1207782d2b80a19e05f5c2602c72e29ec8 Mon Sep 17 00:00:00 2001
+From db1d0da27ecbcdf6bc26c3be16c0f059fc0e03b6 Mon Sep 17 00:00:00 2001
 From: ldemk <38504999+ldemk@users.noreply.github.com>
 Date: Fri, 28 Aug 2020 23:41:00 +0300
 Subject: [PATCH] Add gazebo_msgs dependency to package.xml (#15)
@@ -8,7 +8,7 @@ Subject: [PATCH] Add gazebo_msgs dependency to package.xml (#15)
  1 file changed, 2 insertions(+)
 
 diff --git a/package.xml b/package.xml
-index 8d1c4df..9df1ed3 100644
+index 3ece721..1a24921 100644
 --- a/package.xml
 +++ b/package.xml
 @@ -46,6 +46,8 @@
@@ -21,5 +21,5 @@ index 8d1c4df..9df1ed3 100644
    <exec_depend>geometry_msgs</exec_depend>
    <build_depend>nav_msgs</build_depend>
 -- 
-2.25.1
+2.21.1 (Apple Git-122.3)
 
