@@ -1,4 +1,4 @@
-From 0902648947e40da9701a9014306c97f1b58893c9 Mon Sep 17 00:00:00 2001
+From 7933266a05832f684c1678cd254fc8e7b9065c65 Mon Sep 17 00:00:00 2001
 From: Mikael Arguedas <mikael.arguedas@gmail.com>
 Date: Mon, 1 Jun 2020 16:52:43 +0200
 Subject: [PATCH 2/2] add dependency on ros-melodic-tf (#10)
@@ -29,5 +29,5 @@ index 6343494..a976858 100644
  @[if Replaces]Replaces: @(', '.join(Replaces))@\n@[end if]@
  Description: @(Description)
 -- 
-2.25.1
+2.17.1
 
