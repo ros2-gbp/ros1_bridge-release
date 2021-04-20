@@ -1,4 +1,4 @@
-From a27fc083dd809d396504f0783a0a0dd803022ca6 Mon Sep 17 00:00:00 2001
+From e123520919beb8bbec3e4752d44bd142b6533810 Mon Sep 17 00:00:00 2001
 From: Jacob Perron <jacob@openrobotics.org>
 Date: Mon, 18 May 2020 11:44:43 -0700
 Subject: [PATCH 2/3] Depend on Python 3 version of rospkg
@@ -44,5 +44,5 @@ index c89dfa9..584048f 100644
 +@[if Replaces]Replaces: @(', '.join(Replaces))@\n@[end if]@
 +Description: @(Description)
 -- 
-2.25.1
+2.30.2
 
