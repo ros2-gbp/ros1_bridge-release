@@ -46,6 +46,8 @@
   <exec_depend>diagnostic_msgs</exec_depend>
   <build_depend>example_interfaces</build_depend>
   <exec_depend>example_interfaces</exec_depend>
+  <build_depend>gazebo_msgs</build_depend>
+  <exec_depend>gazebo_msgs</exec_depend>
   <build_depend>geometry_msgs</build_depend>
   <exec_depend>geometry_msgs</exec_depend>
   <build_depend>nav_msgs</build_depend>
