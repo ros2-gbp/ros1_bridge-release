@@ -1,4 +1,4 @@
-From 865391ddd3e28fc7d74657d75914b31016f5d0bc Mon Sep 17 00:00:00 2001
+From 5e3cdd07c753312fcd709086f8dd7f436acd6c0c Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Tue, 24 Nov 2020 14:47:39 -0600
 Subject: [PATCH] Incorporate melodic workspace and dependencies.
@@ -80,5 +80,5 @@ index 5a04067..78bd829 100755
 +	export CMAKE_PREFIX_PATH=${AMENT_PREFIX_PATH}:${CMAKE_PREFIX_PATH} && \
  	dh_auto_install
 -- 
-2.21.1 (Apple Git-122.3)
+2.31.1
 
