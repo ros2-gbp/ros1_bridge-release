@@ -1,0 +1,12 @@
+Source: ros-rolling-ros1-bridge
+Section: misc
+Priority: optional
+Maintainer: Dirk Thomas <dthomas@osrfoundation.org>
+Build-Depends: debhelper (>= 9.0.0), pkg-config, python3-catkin-pkg-modules, python3-yaml, ros-rolling-actionlib-msgs, ros-rolling-ament-cmake, ros-rolling-ament-index-python, ros-rolling-ament-lint-auto, ros-rolling-ament-lint-common, ros-rolling-builtin-interfaces, ros-rolling-demo-nodes-cpp, ros-rolling-diagnostic-msgs, ros-rolling-example-interfaces, ros-rolling-gazebo-msgs, ros-rolling-geometry-msgs, ros-rolling-launch, ros-rolling-launch-testing, ros-rolling-launch-testing-ament-cmake, ros-rolling-launch-testing-ros, ros-rolling-nav-msgs, ros-rolling-rclcpp, ros-rolling-rcutils, ros-rolling-rmw-implementation-cmake, ros-rolling-ros2run, ros-rolling-rosidl-cmake, ros-rolling-rosidl-parser, ros-rolling-sensor-msgs, ros-rolling-shape-msgs, ros-rolling-std-msgs, ros-rolling-std-srvs, ros-rolling-stereo-msgs, ros-rolling-tf2-msgs, ros-rolling-trajectory-msgs, ros-rolling-visualization-msgs, ros-rolling-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-rolling-ros1-bridge
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, pkg-config, python3-yaml, ros-rolling-actionlib-msgs, ros-rolling-builtin-interfaces, ros-rolling-diagnostic-msgs, ros-rolling-example-interfaces, ros-rolling-gazebo-msgs, ros-rolling-geometry-msgs, ros-rolling-nav-msgs, ros-rolling-rclcpp, ros-rolling-rcutils, ros-rolling-sensor-msgs, ros-rolling-shape-msgs, ros-rolling-std-msgs, ros-rolling-std-srvs, ros-rolling-stereo-msgs, ros-rolling-tf2-msgs, ros-rolling-trajectory-msgs, ros-rolling-visualization-msgs, ros-rolling-ros-workspace
+Description: A simple bridge between ROS 1 and ROS 2

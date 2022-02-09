@@ -1,0 +1,224 @@
+ros-rolling-ros1-bridge (0.10.2-2jammy) jammy; urgency=high
+
+  * Example for parameter_bridge (#330 <https://github.com/ros2/ros1_bridge/issues/330>)
+  * Use rcpputils/scope_exit.hpp instead of rclcpp/scope_exit.hpp (#324 <https://github.com/ros2/ros1_bridge/issues/324>)
+  * Use FindPython3 and make Python dependency explicit (#322 <https://github.com/ros2/ros1_bridge/issues/322>)
+  * Bump mailto:ros-tooling/setup-ros@v0.2 (#323 <https://github.com/ros2/ros1_bridge/issues/323>)
+  * Add GitHub workflow for CI (#310 <https://github.com/ros2/ros1_bridge/issues/310>)
+  * Update includes after rcutils/get_env.h deprecation (#311 <https://github.com/ros2/ros1_bridge/issues/311>)
+  * Contributors: Christophe Bedard, Harsh Deshpande, Loy, Shane Loretz
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Fri, 05 Nov 2021 07:00:00 -0000
+
+ros-rolling-ros1-bridge (0.10.1-2jammy) jammy; urgency=high
+
+  * Fix logging for updated rclcpp interface (#303 <https://github.com/ros2/ros1_bridge/issues/303>)
+  * Fix typo in comments (#297 <https://github.com/ros2/ros1_bridge/issues/297>)
+  * Contributors: Michael Carroll, Vicidel
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 25 Jan 2021 08:00:00 -0000
+
+ros-rolling-ros1-bridge (0.9.5-2jammy) jammy; urgency=high
+
+  * Update to use rosidl_parser and .idl files rather than rosidl_adapter and .msg files (#296 <https://github.com/ros2/ros1_bridge/issues/296>)
+  * Update maintainers (#286 <https://github.com/ros2/ros1_bridge/issues/286>)
+  * Contributors: Jacob Perron, William Woodall
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 08 Dec 2020 08:00:00 -0000
+
+ros-rolling-ros1-bridge (0.9.4-2jammy) jammy; urgency=high
+
+  * use hardcoded QoS (keep all, transient local) for /tf_static topic in dynamic_bridge (#282 <https://github.com/ros2/ros1_bridge/issues/282>)
+  * document explicitly passing the topic type to 'ros2 topic echo' (#279 <https://github.com/ros2/ros1_bridge/issues/279>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 10 Sep 2020 07:00:00 -0000
+
+ros-rolling-ros1-bridge (0.9.3-2jammy) jammy; urgency=high
+
+  * Fix multiple definition if message with same name as service exists (#272 <https://github.com/ros2/ros1_bridge/issues/272>)
+  * Contributors: Dirk Thomas
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 07 Jul 2020 07:00:00 -0000
+
+ros-rolling-ros1-bridge (0.9.2-2jammy) jammy; urgency=high
+
+  * When generating service mappings cast pair to set to avoid duplicate pairs (#268 <https://github.com/ros2/ros1_bridge/issues/268>)
+  * Contributors: Gavin Suddrey
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 01 Jun 2020 07:00:00 -0000
+
+ros-rolling-ros1-bridge (0.9.1-2jammy) jammy; urgency=high
+
+  * Deprecate package key for service parameters, use full type instead (#263 <https://github.com/ros2/ros1_bridge/issues/263>)
+  * Fix removing obsolete ROS 2 service bridges (#267 <https://github.com/ros2/ros1_bridge/issues/267>)
+  * Gracefully handle invalid ROS 1 publishers (#266 <https://github.com/ros2/ros1_bridge/issues/266>)
+  * Use reliable publisher in simple bridge (#264 <https://github.com/ros2/ros1_bridge/issues/264>)
+  * Remove outdated information on Fast RTPS bug (#260 <https://github.com/ros2/ros1_bridge/issues/260>)
+  * Contributors: Dirk Thomas, Thom747
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 27 May 2020 07:00:00 -0000
+
+ros-rolling-ros1-bridge (0.9.0-2jammy) jammy; urgency=high
+
+  * Avoid new deprecations (#255 <https://github.com/ros2/ros1_bridge/issues/255>)
+  * Updates since changes to message_info in rclcpp (#253 <https://github.com/ros2/ros1_bridge/issues/253>)
+  * Assert ROS 1 nodes' stdout (#247 <https://github.com/ros2/ros1_bridge/issues/247>)
+  * Ignore actionlib_msgs deprecation warning (#245 <https://github.com/ros2/ros1_bridge/issues/245>)
+  * Drop workaround for https://github.com/ros2/rmw_fastrtps/issues/265. (#233 <https://github.com/ros2/ros1_bridge/issues/233>)
+  * Code style only: wrap after open parenthesis if not in one line (#238 <https://github.com/ros2/ros1_bridge/issues/238>)
+  * Contributors: Dirk Thomas, Jacob Perron, Michel Hidalgo, William Woodall
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 18 May 2020 07:00:00 -0000
+
+ros-rolling-ros1-bridge (0.8.2-2jammy) jammy; urgency=high
+
+  * fix building test when ROS 1 diagnostic_msgs is isolated from roscpp (#236 <https://github.com/ros2/ros1_bridge/issues/236>)
+  * fix service with custom mapped message field (#234 <https://github.com/ros2/ros1_bridge/issues/234>)
+  * Contributors: Dirk Thomas
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Fri, 17 Jan 2020 08:00:00 -0000
+
+ros-rolling-ros1-bridge (0.8.1-2jammy) jammy; urgency=high
+
+  * fix showing duplicate keys in --print-pairs (#225 <https://github.com/ros2/ros1_bridge/issues/225>)
+  * fix bridging builtin_interfaces Duration and Time (#224 <https://github.com/ros2/ros1_bridge/issues/224>)
+  * Don't use features that will be deprecated (#222 <https://github.com/ros2/ros1_bridge/issues/222>)
+  * Contributors: Dirk Thomas, Peter Baughman
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 23 Oct 2019 07:00:00 -0000
+
+ros-rolling-ros1-bridge (0.8.0-2jammy) jammy; urgency=high
+
+  * Promote special CLI rules to flags. (#217 <https://github.com/ros2/ros1_bridge/issues/217>)
+  * Update __log_rosout_disable workaround to use --ros-args. (#216 <https://github.com/ros2/ros1_bridge/issues/216>)
+  * Clearer instructions for example (#211 <https://github.com/ros2/ros1_bridge/issues/211>)
+  * add services bridging to parameter_bridge (#176 <https://github.com/ros2/ros1_bridge/issues/176>)
+  * Contributors: Jose Luis Blanco-Claraco, Michel Hidalgo, cyrilleberger
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Fri, 27 Sep 2019 07:00:00 -0000
+
+ros-rolling-ros1-bridge (0.7.3-2jammy) jammy; urgency=high
+
+  * fix typename in static bridge (#209 <https://github.com/ros2/ros1_bridge/issues/209>)
+  * fix cosmetic in message (#207 <https://github.com/ros2/ros1_bridge/issues/207>)
+  * Use %zu print format for size_t (#204 <https://github.com/ros2/ros1_bridge/issues/204>)
+  * Fix parameter bridge for topic if ros1 and ros2 type have a different name (#177 <https://github.com/ros2/ros1_bridge/issues/177>)
+  * Contributors: Dirk Thomas, Emerson Knapp, cyrilleberger
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Fri, 02 Aug 2019 07:00:00 -0000
+
+ros-rolling-ros1-bridge (0.7.2-2jammy) jammy; urgency=high
+
+  * add note about rostopic echo (#202 <https://github.com/ros2/ros1_bridge/issues/202>)
+  * add workspace setup documentation (#201 <https://github.com/ros2/ros1_bridge/issues/201>)
+  * Contributors: Mabel Zhang
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 29 May 2019 07:00:00 -0000
+
+ros-rolling-ros1-bridge (0.7.1-2jammy) jammy; urgency=high
+
+  * Disable rosout logging for the bridge (#197 <https://github.com/ros2/ros1_bridge/issues/197>)
+  * Handle launch_testing assertExitCodes correctly (#193 <https://github.com/ros2/ros1_bridge/issues/193>)
+  * Support field selection  (#174 <https://github.com/ros2/ros1_bridge/issues/174>)
+  * Use interface kind names properly in ROS2 interface type names. (#194 <https://github.com/ros2/ros1_bridge/issues/194>)
+  * Contributors: Juan Rodriguez Hortala, Michel Hidalgo, ivanpauno
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 20 May 2019 07:00:00 -0000
+
+ros-rolling-ros1-bridge (0.7.0-2jammy) jammy; urgency=high
+
+  * Adds interface type to ROS2 message type name. (#191 <https://github.com/ros2/ros1_bridge/issues/191>)
+  * fix build by passing options (#192 <https://github.com/ros2/ros1_bridge/issues/192>)
+  * changes to avoid deprecated API's (#189 <https://github.com/ros2/ros1_bridge/issues/189>)
+  * Corrected publish calls with shared_ptr signature, leftovers (#190 <https://github.com/ros2/ros1_bridge/issues/190>)
+  * Corrected publish calls with shared_ptr signature (#188 <https://github.com/ros2/ros1_bridge/issues/188>)
+  * Migrate launch tests to new launch_testing features & API (#179 <https://github.com/ros2/ros1_bridge/issues/179>)
+  * Some small fixes to the README (#186 <https://github.com/ros2/ros1_bridge/issues/186>)
+  * Fix the generator. (#185 <https://github.com/ros2/ros1_bridge/issues/185>)
+  * Merge pull request #183 <https://github.com/ros2/ros1_bridge/issues/183> from ros2/interface_specific_compilation_units
+  * remove note about memory usage from README
+  * split into interface specific compilation units
+  * duplicate template before modifying it to track history
+  * fix log messages (#182 <https://github.com/ros2/ros1_bridge/issues/182>)
+  * use safe_load instead of deprecated load (#180 <https://github.com/ros2/ros1_bridge/issues/180>)
+  * Merge pull request #178 <https://github.com/ros2/ros1_bridge/issues/178> from ros2/gonzalodepedro/fix-propagate-args-to-rcl-init
+  * Allows propagations of cmd args to rclcpp::init
+  * add section about DCO to CONTRIBUTING.md
+  * Add launch along with launch_testing as test dependencies. (#171 <https://github.com/ros2/ros1_bridge/issues/171>)
+  * Switch to rclcpp logging and improve messages (#167 <https://github.com/ros2/ros1_bridge/issues/167>)
+  * invalidate wrong cached result for diagnostic_msgs (#170 <https://github.com/ros2/ros1_bridge/issues/170>)
+  * Drops legacy launch API usage. (#163 <https://github.com/ros2/ros1_bridge/issues/163>)
+  * export find_ros1_package cmake (#164 <https://github.com/ros2/ros1_bridge/issues/164>)
+  * ensure that the diagnostic_msgs package is from ROS 2 (#169 <https://github.com/ros2/ros1_bridge/issues/169>)
+  * Allow latching for ROS1 pub, and custom qos for ROS2 components (#162 <https://github.com/ros2/ros1_bridge/issues/162>)
+  * Allow external use of ros1_bridge library factories (#160 <https://github.com/ros2/ros1_bridge/issues/160>)
+  * Contributors: Chris Lalancette, Dirk Thomas, Gonzalo de Pedro, Gonzo, Karsten Knese, Michel Hidalgo, Mikael Arguedas, Paul Bovbel, William Woodall, ivanpauno
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 08 May 2019 07:00:00 -0000
+
+ros-rolling-ros1-bridge (0.6.1-2jammy) jammy; urgency=high
+
+  * exclude ros1 nodelets (#152 <https://github.com/ros2/ros1_bridge/issues/152>)
+  * fix is_package_mapping check (#151 <https://github.com/ros2/ros1_bridge/issues/151>)
+  * Contributors: Dirk Thomas, Karsten Knese
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 12 Dec 2018 08:00:00 -0000
+
+ros-rolling-ros1-bridge (0.6.0-2jammy) jammy; urgency=high
+
+  * expose convert function (#146 <https://github.com/ros2/ros1_bridge/issues/146>)
+  * support for custom field mapping for services (#147 <https://github.com/ros2/ros1_bridge/issues/147>)
+  * handle idl files correctly (#145 <https://github.com/ros2/ros1_bridge/issues/145>)
+  * Fix for actions subfolder introduction in ros2 message bridge (#143 <https://github.com/ros2/ros1_bridge/issues/143>)
+  * use new error handling API from rcutils (#141 <https://github.com/ros2/ros1_bridge/issues/141>)
+  * changed cmake message logger level (#138 <https://github.com/ros2/ros1_bridge/issues/138>)
+  * Contributors: Alberto Soragna, Dirk Thomas, Karsten Knese, Samuel Servulo, William Woodall
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sat, 08 Dec 2018 08:00:00 -0000
+
+ros-rolling-ros1-bridge (0.5.1-2jammy) jammy; urgency=high
+
+  * Merge pull request #136 <https://github.com/ros2/ros1_bridge/issues/136> from ros2/update_docs_135
+  * update doc to reflect that any mapping combination is supported
+  * rule can be a message mapping even if a field mapping is provided as well (#135 <https://github.com/ros2/ros1_bridge/issues/135>)
+  * Contributors: Mikael Arguedas
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 20 Aug 2018 07:00:00 -0000
+
+ros-rolling-ros1-bridge (0.5.0-2jammy) jammy; urgency=high
+
+  * remove --build-tests which is an ament argument from colcon invocation
+  * print service pairs as well (#124 <https://github.com/ros2/ros1_bridge/issues/124>)
+  * print message for all ROS 2 message pkgs (#123 <https://github.com/ros2/ros1_bridge/issues/123>)
+  * update README to use colcon and ROS Melodic (#122 <https://github.com/ros2/ros1_bridge/issues/122>)
+  * include module name which wasn't found in error message (#121 <https://github.com/ros2/ros1_bridge/issues/121>)
+  * use catkin_pkg to parse packages (#119 <https://github.com/ros2/ros1_bridge/issues/119>)
+  * migrate launch -> launch.legacy (#117 <https://github.com/ros2/ros1_bridge/issues/117>)
+  * Duplicate messages in bidirectional_bridge fix (#113 <https://github.com/ros2/ros1_bridge/issues/113>)
+  * Fix linter failures from includes (#110 <https://github.com/ros2/ros1_bridge/issues/110>)
+  * Map duration and time messages (#106 <https://github.com/ros2/ros1_bridge/issues/106>)
+  * clarify that all field must be listed explicitly (#109 <https://github.com/ros2/ros1_bridge/issues/109>)
+  * add an error message if the mapping rules are not a list (#107 <https://github.com/ros2/ros1_bridge/issues/107>)
+  * advise to ask questions on ROS answers
+  * Contributors: ArkadiuszNiemiec, Dirk Thomas, Mikael Arguedas, Tully Foote, William Woodall, dhood
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 27 Jun 2018 07:00:00 -0000
+
+ros-rolling-ros1-bridge (0.4.0-2jammy) jammy; urgency=high
+
+  * match topic name printed in console (#102 <https://github.com/ros2/ros1_bridge/issues/102>)
+  * Update for rclcpp namespace removals (#101 <https://github.com/ros2/ros1_bridge/issues/101>)
+  * cmake 3.10 compatibility: pass absolute path to file(GENERATE) function (#100 <https://github.com/ros2/ros1_bridge/issues/100>)
+  * depend on rosidl_interfaces_packages group (#99 <https://github.com/ros2/ros1_bridge/issues/99>)
+  * Fix building of ros1_bridge against newer roscpp. (#98 <https://github.com/ros2/ros1_bridge/issues/98>)
+  * Merge pull request #97 <https://github.com/ros2/ros1_bridge/issues/97> from ros2/ament_cmake_pytest
+  * use ament_cmake_pytest instead of ament_cmake_nose
+  * Merge pull request #96 <https://github.com/ros2/ros1_bridge/issues/96> from ros2/print_type_names
+  * print bridged type names
+  * Increase timeout waiting for server for ros2 client in tests (#94 <https://github.com/ros2/ros1_bridge/issues/94>)
+  * update style to match latest uncrustify (#93 <https://github.com/ros2/ros1_bridge/issues/93>)
+  * Contributors: Brian Gerkey, Chris Lalancette, Dirk Thomas, Esteve Fernandez, Hunter Allen, Jackie Kay, Karsten Knese, Mikael Arguedas, Morgan Quigley, Rafal Kozik, Rafał Kozik, Steven! Ragnarök, Tully Foote, William Woodall, dhood, gerkey
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Fri, 08 Dec 2017 08:00:00 -0000
+
+
