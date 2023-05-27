@@ -1,3 +1,26 @@
+## ros1_bridge (foxy) - 0.9.7-1
+
+The packages in the `ros1_bridge` repository were released into the `foxy` distro by running `/usr/bin/bloom-release --track foxy --rosdistro foxy ros1_bridge` on `Sat, 27 May 2023 02:32:54 -0000`
+
+The `ros1_bridge` package was released.
+
+Version of package(s) in repository `ros1_bridge`:
+
+- upstream repository: https://github.com/ros2/ros1_bridge.git
+- release repository: https://github.com/ros2-gbp/ros1_bridge-release.git
+- rosdistro version: `0.9.6-1`
+- old version: `0.9.6-1`
+- new version: `0.9.7-1`
+
+Versions of tools used:
+
+- bloom version: `0.11.2`
+- catkin_pkg version: `0.5.2`
+- rosdep version: `0.22.2`
+- rosdistro version: `0.9.0`
+- vcstools version: `0.1.42`
+
+
 ## ros1_bridge (rolling) - 0.10.3-1
 
 The packages in the `ros1_bridge` repository were released into the `rolling` distro by running `/usr/bin/bloom-release --track rolling --rosdistro rolling ros1_bridge` on `Tue, 29 Mar 2022 00:18:17 -0000`
