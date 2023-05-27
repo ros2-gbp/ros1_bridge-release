@@ -1,4 +1,4 @@
-From 29de0fed2adb60f24ef2e717230214ff61b955e2 Mon Sep 17 00:00:00 2001
+From 4ebba651e41accd43ac6cc4a8399598d067021e6 Mon Sep 17 00:00:00 2001
 From: Michael Carroll <michael@openrobotics.org>
 Date: Mon, 1 Jun 2020 11:27:33 -0500
 Subject: [PATCH 3/3] add dependency on ros-noetic-tf (#10) (#11)
@@ -31,5 +31,5 @@ index 584048f..5922149 100644
  @[if Replaces]Replaces: @(', '.join(Replaces))@\n@[end if]@
  Description: @(Description)
 -- 
-2.21.1 (Apple Git-122.3)
+2.34.1
 
